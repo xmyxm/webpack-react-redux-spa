@@ -1,0 +1,22 @@
+{
+  "name": "webpack-react-redux-spa",
+  "version": "1.0.0",
+  "description": "xmyxm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xmyxm/webpack-react-redux-spa.git"
+  },
+  "author": "xmyxm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xmyxm/webpack-react-redux-spa/issues"
+  },
+  "homepage": "https://github.com/xmyxm/webpack-react-redux-spa#readme",
+  "dependencies": {
+    "react": "^15.6.1"
+  }
+}
