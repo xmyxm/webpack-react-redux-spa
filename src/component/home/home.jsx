@@ -8,7 +8,10 @@ class Comment extends Component{
 	}
 	render(){
 		return (
-			 <div>index页面</div>
+			 <ul>
+			 	<li>index页面</li>
+			 	<li>detail页面</li>
+			 </ul>
 	    )
 	}
 } 

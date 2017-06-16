@@ -1,4 +1,4 @@
-import indexcss from './index.css';
+import appcss from './app.css';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 
@@ -7,8 +7,12 @@ class Comment extends Component{
 		super(props);
 	}
 	render(){
+		const {children} = this.props;
 		return (
-			 <div>index页面</div>
+			<div className="commentbox" >
+				<header>我是叶头</header>
+				{children}
+			</div>
 	    )
 	}
 } 

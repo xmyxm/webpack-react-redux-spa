@@ -7,8 +7,9 @@ class Comment extends Component{
 		super(props);
 	}
 	render(){
+		const {children} = this.props;
 		return (
-			 <div>index页面</div>
+			 <div>detail页面</div>
 	    )
 	}
 } 
