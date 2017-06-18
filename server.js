@@ -1,5 +1,6 @@
 const WebpackDevServer = require("webpack-dev-server");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const webpack = require("webpack");
 const open = require("open");
 const config = require("./webpack.config.js");
@@ -18,7 +19,8 @@ for (let key in config.entry) {
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 //css 文件抽离设置 如为dev 环境 disable必须为 true 才会把 css 打为内联样式来实现热刷新，若线上环境必须disable必须为false才会单独抽离出css文件
 config.plugins.push(new ExtractTextPlugin({ filename: '[name].css', disable: true, allChunks: true }));
-
+//改善开发人员使用webpack时控制台用户体验的一款工具
+config.plugins.push(new DashboardPlugin());
 
 const compiler = webpack(config);
 const server = new WebpackDevServer(compiler, config.devServer);

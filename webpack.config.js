@@ -7,9 +7,7 @@ const packageFilePath = path.join(__dirname, "dist");
 
 module.exports = {
 	entry:{
-		indexpage:['./public/js/index.js']
-		,detailpage:['./public/js/detail.js']
-		,listpage:['./public/js/list.js']
+		index:['./src/index.jsx']
 		//,common:['open']
 	},
 	output:{
@@ -21,9 +19,15 @@ module.exports = {
 	module:{
 		rules:[
 			{
-				test:'/\.js$/',
+				test:'/\.(jsx|js)$/',
 				exclude: [path.resolve(__dirname, '..', 'node_modules')],
-				use: ['babel-loader']
+				use: { 
+					loader: 'babel-loader' ,
+					query: {
+          				presets: ['react', 'es2015', 'stage-0'],
+		          		plugins: ["transform-object-rest-spread", "transform-decorators-legacy", "transform-class-properties"]
+			        }
+		    	}
 			},
 			{ 	
 				test: /\.css$/, 
@@ -52,6 +56,17 @@ module.exports = {
 	        }
 		]
 	},
+	// postcss: function() {
+ //        //处理css兼容性代码，无须再写-webkit之类的浏览器前缀
+ //        return [
+ //            require('postcss-initial')({
+ //                reset: 'all' // reset only inherited rules
+ //            }),
+ //            require('autoprefixer')({
+ //                browsers: ['> 5%']
+ //            })
+ //        ];
+ //    },
 	plugins:[
 		new CleanPlugin(['dist', 'build']),//每次打包清理上次的打包文件
 		// new webpack.optimize.CommonsChunkPlugin({
@@ -60,38 +75,33 @@ module.exports = {
 		//           minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
 		//       }),
 		new HtmlWebpackPlugin({
-				template:'./public/tpl/index.html'
+				template:'./src/html/index.html'
 				,filename:'index.html'//可以使用hash命名
 				,title:'大众点评 推荐菜详情'
 				,inject:'body'//脚本包含到body 也可以写到head里面
-				,chunks:['indexpage']//指定当前模板需要打入哪些js模块
+				,chunks:['index']//指定当前模板需要打入哪些js模块
 				,minify:{//启用代码代码压缩
 					removeComments:true,//移除注释
 					collapseWhitespace:true//移除空格
 				}
 			}),
-		new HtmlWebpackPlugin({
-				template:'./public/tpl/detail.html'
-				,filename:'detail.html'//可以使用hash命名
-				,title:'大众点评 推荐菜详情'
-				,inject:'body'//脚本包含到body 也可以写到head里面
-				,chunks:['detailpage']//指定当前模板需要打入哪些js模块
-				,minify:{//启用代码代码压缩
-					removeComments:true,//移除注释
-					collapseWhitespace:true//移除空格
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				postcss: function () {
+					return [precss, autoprefixer];
+				},
+				devServer: {
+					contentBase: packageFilePath, //本地服务器所加载的页面所在的目录
+					historyApiFallback: true, //不跳转
+					compress: true,//一切服务都启用gzip 压缩：
+					inline: true,//应用程序启用内联模式,默认内联模式
+					hot: true,//启用 webpack 的模块热替换特性
+					host:'localhost',//指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定为ip
+					stats:{colors: true},// 用颜色标识
+					port: 9000
 				}
-			}),
-		new HtmlWebpackPlugin({
-				template:'./public/tpl/list.html'
-				,filename:'list.html'//可以使用hash命名
-				,title:'大众点评 推荐菜商户列表'
-				,inject:'body'//脚本包含到body 也可以写到head里面
-				,chunks:['listpage']//指定当前模板需要打入哪些js模块
-				,minify:{//启用代码代码压缩
-					removeComments:true,//移除注释
-					collapseWhitespace:true//移除空格
-				}
-			})
+			}
+		})
 	],
 	devServer: {
 		contentBase: packageFilePath,
