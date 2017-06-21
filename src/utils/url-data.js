@@ -1,4 +1,4 @@
-export paramToStr = data =>{
+export const paramToStr = data =>{
 	let paramArr = []; 
 	let paramStr = ''; 
 	for (let attr in data) {

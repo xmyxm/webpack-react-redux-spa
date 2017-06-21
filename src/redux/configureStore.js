@@ -18,8 +18,8 @@ export default (initialState) => {
     const store = finalCreateStore(reducers, initialState);
 
     if (module.hot) {
-        const nextReducer = require('./reducers');
-        module.hot.accept('./reducers',
+        const nextReducer = require('./reducer');
+        module.hot.accept('./reducer',
             () => { store.replaceReducer(nextReducer); });
     }
 

@@ -29,7 +29,7 @@ server.listen(port, host, (err)=>{
 	if(err){
 		console.log('启动出错：' + err);
 	}
-	open('http://' + host + ':' + port + '/index.html');
+	//open('http://' + host + ':' + port + '/index.html');
 });
 
 

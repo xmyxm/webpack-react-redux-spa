@@ -21,13 +21,17 @@ module.exports = {
 			{
 				test:'/\.(jsx|js)$/',
 				exclude: [path.resolve(__dirname, '..', 'node_modules')],
-				use: { 
-					loader: 'babel-loader' ,
-					query: {
-          				presets: ['react', 'es2015', 'stage-0', 'stage-3'],
-		          		plugins: ["transform-object-rest-spread", "transform-decorators-legacy", "transform-class-properties"]
-			        }
-		    	}
+				loader: "babel-loader",
+				options: {
+		          presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3']
+		        }
+				// use: { 
+				// 	loader: 'babel-loader',
+				// 	query: {
+				//       				presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3'],
+				//         		plugins: ["transform-object-rest-spread", "transform-decorators-legacy", "transform-class-properties"]
+				//        }
+				//   	}
 			},
 			{ 	
 				test: /\.css$/, 
