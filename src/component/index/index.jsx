@@ -1,4 +1,4 @@
-import indexcss from './index.css';
+import indexcss from './index.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 

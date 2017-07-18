@@ -19,28 +19,52 @@ module.exports = {
 	module:{
 		rules:[
 			{
-				test:'/\.(jsx|js)$/',
-				exclude: [path.resolve(__dirname, '..', 'node_modules')],
-				loader: "babel-loader",
-				options: {
-		          presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3']
-		        }
-				// use: { 
-				// 	loader: 'babel-loader',
-				// 	query: {
-				//       				presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3'],
-				//         		plugins: ["transform-object-rest-spread", "transform-decorators-legacy", "transform-class-properties"]
-				//        }
-				//   	}
+				// test:/\.(jsx|js)$/,
+				// exclude: [path.resolve(__dirname, '..', 'node_modules')],
+				// loader: "babel-loader",
+				// options: {
+		  //         presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3']
+		  //       }
+				
+
+
+
+		// use: {
+  //              loader: 'babel-loader',
+  //              options: {
+  //                  "presets": [
+  //                      "react",
+  //                      "stage-0",
+  //                      ["es2015", { "modules": false }]
+  //                  ],
+  //                  // "plugins": [
+  //                  //     "transform-object-rest-spread",
+  //                  //     "transform-decorators-legacy",
+  //                  //     "transform-class-properties"
+  //                  // ]
+  //              }
+  //          }
+
+
+
+
+
+            test: /\.(es6|jsx|js)$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
+            query: {
+	                presets: ['react', 'stage-0', 'es2015', 'stage-3'],
+	                plugins: ["transform-object-rest-spread","transform-decorators-legacy","transform-class-properties"]
+	            }
 			},
-			{ 	
-				test: /\.css$/, 
-				use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [ 'css-loader' ] }) 
-			},
+			// { 	
+			// 	test: /\.css$/, 
+			// 	use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [ 'css-loader' ] }) 
+			// },
 			{
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader','less-loader']}) // 用!去链式调用loader
-	        },
+		        test: /\.less$/,
+		        use: ExtractTextPlugin.extract({use:[ 'css-loader','less-loader'],fallback: 'style-loader'})
+		    },
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{loader: 'url-loader', options: {limit: 500, name: '[name]-[hash].[ext]'}}]

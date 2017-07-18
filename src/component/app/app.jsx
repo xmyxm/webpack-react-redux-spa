@@ -1,41 +1,19 @@
-// import appcss from './app.less';s
+import appcss from './app.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 
-export default class Comment extends Component{
+export default class App extends Component{
+
+	constructor(props){
+		super(props);
+	}
 
 	render() {
-		return (<div></div>);		
+		return (
+			<a>wefwef</a>
+		)		
 	}
 } 
-
-
-
-
-
-
-
-
-
-// render(){
-// 		const {children} = this.props;
-// 		return (
-// 			<div className="commentbox" >
-// 				<header>我是叶头</header>
-// 				{children}
-// 			</div>
-// 	    )
-// 	}
-
-
-
-
-
-
-
-
-
-
 
 
 

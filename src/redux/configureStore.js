@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
-import { hashHistory } from 'react-router';
+import { createLogger } from 'redux-logger';
+//import { hashHistory } from 'react-router';
+import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 import reducers from './reducer';//拿到所有reducer来生成stare
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 export default (initialState) => {
-    const middleware = [thunk, routerMiddleware(hashHistory)];
+    const middleware = [thunk, routerMiddleware(createHistory)];
 
     if (process.env.NODE_ENV !== 'production') {
         middleware.push(createLogger());
