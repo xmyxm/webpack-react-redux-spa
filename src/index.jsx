@@ -1,6 +1,6 @@
 // import React from 'react';
 // import {render} from 'react-dom';
-// import {BrowserRouter as Router, Route, IndexRoute} from 'react-router-dom';
+// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 // import {Provider} from 'react-redux';
 // import {syncHistoryWithStore, ConnectedRouter} from 'react-router-redux';
 
@@ -19,57 +19,32 @@
 // render((
 //     <Provider store={store}>
 //         <Router history={history}>
-//             <Route path="/" component={App}>
-
-//             </Route>
+//         <div>
+//            <Switch>
+//               <Route exact path="/" component={App}></Route>
+//               <Route path="/home" component={Home} ></Route>
+//            </Switch>
+//         </div>
 //         </Router>
 //     </Provider>
 // ), document.getElementById('app'));
 
 
-
-
-
-               
-// <Route path="/msource/:msource/:page" component={MSourcePageModuleList}/>
-// <Route path="/page" component={PageList}/>
-// <Route path="/page/:page" component={PageModuleList}/>
-
-
-// <IndexRoute component={Index}/>
-// <Route path="/home" component={Home}/>
-// <Route path="/detail/:id" component={Detail}/>
-
-
-import React from 'react'
-import ReactDOM from 'react-dom'
-
-import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { Provider } from 'react-redux'
-
-import createHistory from 'history/createBrowserHistory'
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom'
-
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-
-//import reducers from './reducers' // Or wherever you keep your reducers
-
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createHistory from 'history/createBrowserHistory';
+import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import reducers from './redux/reducer/fetch-reducer.js';
-
 
 import Index from './component/index/index.jsx';
 import Home from './component/home/home.jsx';
 import Detail from './component/detail/detail.jsx';
 
-
-// Create a history of your choosing (we're using a browser history in this case)
-const history = createHistory()
-
-// Build the middleware for intercepting and dispatching navigation actions
-const middleware = routerMiddleware(history)
-
-// Add the reducer to your store on the `router` key
-// Also apply our middleware for navigating
+const history = createHistory();
+const middleware = routerMiddleware(history);
 const store = createStore(
   combineReducers({
     ...reducers,
@@ -77,9 +52,6 @@ const store = createStore(
   }),
   applyMiddleware(middleware)
 )
-
-// Now you can dispatch navigation actions from anywhere!
-// store.dispatch(push('/foo'))
 
 ReactDOM.render(
   <Provider store={store}>
@@ -100,11 +72,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app')
 )
-
-//<Switch>
-//<Route exact path="/" component={Index}/>
-//<Route path="/home" component={Home}/>
-//<Route path="/detail" component={Detail}/>
-//</Switch>
 
 
