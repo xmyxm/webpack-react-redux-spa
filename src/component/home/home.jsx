@@ -9,8 +9,7 @@ export class Comment extends Component{
 	render(){
 		return (
 			 <ul>
-			 	<li>index页面</li>
-			 	<li>detail页面</li>
+			 	<li>home页面</li>
 			 </ul>
 	    )
 	}
