@@ -1,8 +1,9 @@
 import indexcss from './home.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 
-export class Comment extends Component{
+export default class Home extends Component{
 	constructor(props){
 		super(props);
 	}
@@ -14,6 +15,7 @@ export class Comment extends Component{
 	    )
 	}
 } 
+
 
 
 
