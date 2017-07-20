@@ -139,7 +139,13 @@ module.exports = {
 		hot: true,//启用 webpack 的模块热替换特性
 		host:'localhost',//指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定为ip
 		stats:{colors: true},// 用颜色标识
-		port: 9000
+		port: 9000,
+		historyApiFallback:{
+			index:'dist/index.html',
+			rewrites: [
+			  { from: /^\/admin/, to: 'dist/admin.html' }
+			]
+	    }
 	}
 }
 
