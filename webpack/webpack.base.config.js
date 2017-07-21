@@ -52,29 +52,29 @@ module.exports = {
 		]
 	},
 	// postcss: function() {
- //        //处理css兼容性代码，无须再写-webkit之类的浏览器前缀
- //        return [
- //            require('postcss-initial')({
- //                reset: 'all' // reset only inherited rules
- //            }),
- //            require('autoprefixer')({
- //                browsers: ['> 5%']
- //            })
- //        ];
- //    },
+	//        //处理css兼容性代码，无须再写-webkit之类的浏览器前缀
+	//        return [
+	//            require('postcss-initial')({
+	//                reset: 'all' // reset only inherited rules
+	//            }),
+	//            require('autoprefixer')({
+	//                browsers: ['> 5%']
+	//            })
+	//        ];
+	//    },
 	plugins:[
 		new CleanPlugin(['dist', 'build']),//每次打包清理上次的打包文件
-		// new webpack.optimize.CommonsChunkPlugin({
-		//           name: "common",
-		//           filename: "common.js",
-		//           minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
-		//       }),
+		new webpack.optimize.CommonsChunkPlugin({
+				name: "common",
+				filename: "js/common.js",
+				minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
+			}),
 		new HtmlWebpackPlugin({
 				template:'./src/html/index.html'
 				,filename:'index.html'//可以使用hash命名
 				,title:'大众点评 推荐菜详情'
 				,inject:'body'//脚本包含到body 也可以写到head里面
-				,chunks:['index']//指定当前模板需要打入哪些js模块
+				,chunks:['index','common']//指定当前模板需要打入哪些js模块
 				,minify:{//启用代码代码压缩
 					removeComments:true,//移除注释
 					collapseWhitespace:true//移除空格
@@ -87,6 +87,7 @@ module.exports = {
 				}
 			}
 		})
+		//,new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
 	],
 	devServer: {
 		contentBase: packageFilePath,
@@ -105,12 +106,6 @@ module.exports = {
 	    }
 	}
 }
-
-
-
-
-
-
 
 
 
