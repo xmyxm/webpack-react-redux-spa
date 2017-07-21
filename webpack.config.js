@@ -19,48 +19,14 @@ module.exports = {
 	module:{
 		rules:[
 			{
-				// test:/\.(jsx|js)$/,
-				// exclude: [path.resolve(__dirname, '..', 'node_modules')],
-				// loader: "babel-loader",
-				// options: {
-		  //         presets: ['babel-preset-react', 'babel-preset-es2015', 'babel-preset-stage-0', 'babel-preset-stage-3']
-		  //       }
-				
-
-
-
-		// use: {
-  //              loader: 'babel-loader',
-  //              options: {
-  //                  "presets": [
-  //                      "react",
-  //                      "stage-0",
-  //                      ["es2015", { "modules": false }]
-  //                  ],
-  //                  // "plugins": [
-  //                  //     "transform-object-rest-spread",
-  //                  //     "transform-decorators-legacy",
-  //                  //     "transform-class-properties"
-  //                  // ]
-  //              }
-  //          }
-
-
-
-
-
-            test: /\.(es6|jsx|js)$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
+	            test: /\.(es6|jsx|js)$/,
+	            loader: 'babel-loader',
+	            exclude: /node_modules/,
+	            query: {
 	                presets: ['react', 'stage-0', 'es2015', 'stage-3'],
 	                plugins: ["transform-object-rest-spread","transform-decorators-legacy","transform-class-properties"]
-	            }
+		        }
 			},
-			// { 	
-			// 	test: /\.css$/, 
-			// 	use: ExtractTextPlugin.extract({ fallback: 'style-loader', use: [ 'css-loader' ] }) 
-			// },
 			{
 		        test: /\.less$/,
 		        use: ExtractTextPlugin.extract({use:[ 'css-loader','less-loader'],fallback: 'style-loader'})
@@ -117,16 +83,6 @@ module.exports = {
 			options: {
 				postcss: function () {
 					return [precss, autoprefixer];
-				},
-				devServer: {
-					contentBase: packageFilePath, //本地服务器所加载的页面所在的目录
-					historyApiFallback: true, //不跳转
-					compress: true,//一切服务都启用gzip 压缩：
-					inline: true,//应用程序启用内联模式,默认内联模式
-					hot: true,//启用 webpack 的模块热替换特性
-					host:'localhost',//指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定为ip
-					stats:{colors: true},// 用颜色标识
-					port: 9000
 				}
 			}
 		})
