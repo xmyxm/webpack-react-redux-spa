@@ -38,6 +38,7 @@ import createHistory from 'history/createBrowserHistory';
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import reducers from './redux/reducer/fetch-reducer.js';
+import baseStyle from './style/base.less';
 
 import List from 'bundle-loader?lazy&name=app-[name]!./component/list/list.jsx';
 import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';

@@ -3,7 +3,7 @@ const CleanPlugin = require('clean-webpack-plugin');//webpack插件，用于清�
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
-const packageFilePath = path.join(__dirname, "dist");
+const packageFilePath = path.join(__dirname, "../dist");
 
 module.exports = {
 	entry:{
