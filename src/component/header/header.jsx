@@ -23,66 +23,40 @@ export default class Home extends Component{
 				</header>
 				<div className = "classify">
 						<div className = "userinfo">
-							<div className = "icon"></div>
-							<div className = "info">
-								<p className = "name">Jane Doe</p>
-								<p className = "detail">Hyperspace Engineer</p>
+							<div className = "usericon"></div>
+							<div className = "usercontent">
+								<p className = "name">晨曦沐枫</p>
+								<p className = "detail">前端工程师</p>
 							</div>
 						</div>
 						<nav className = "nav">
 							<ul>
-								<li>
+								<li className = "item">
+									<div className = "iconbase homegray" ></div>
 									<a href="#top" id="top-link" className = "name" >
-										<span className="icon fa-home">Intro</span>
+										<span className="icon fa-home">主页</span>
 									</a>
 								</li>
-								<li>
+								<li className = "item">
+									<div className = "iconbase bloggray" ></div>
 									<a href="#portfolio" id="portfolio-link" className = "name" >
-										<span className="icon fa-th">Portfolio</span>
+										<span className="icon fa-th">博客</span>
 									</a>
 								</li>
-								<li>
+								<li className = "item">
+									<div className = "iconbase usergray" ></div>
 									<a href="#about" id="about-link" className = "name" >
-										<span className="icon fa-user">About Me</span>
+										<span className="icon fa-user">关于</span>
 									</a>
 								</li>
-								<li>
+								<li className = "item">
+									<div className = "iconbase emailgray" ></div>
 									<a href="#contact" id="contact-link" className = "name active" >
-										<span className="icon fa-envelope">Contact</span>
+										<span className="icon fa-envelope">联系</span>
 									</a>
 								</li>
 							</ul>
 						</nav>
-				</div>
-
-				<div className="bottom">
-						<ul className="icons">
-							<li>
-								<a href="#" className="icon fa-twitter" >
-									<span className="label">Twitter</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" className="icon fa-facebook" >
-									<span className="label">Facebook</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" className="icon fa-github" >
-									<span className="label">Github</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" className="icon fa-dribbble" >
-									<span className="label">Dribbble</span>
-								</a>
-							</li>
-							<li>
-								<a href="#" className="icon fa-envelope" >
-									<span className="label">Email</span>
-								</a>
-							</li>
-						</ul>
 				</div>
 			</div>
 	    )
