@@ -8,7 +8,7 @@ const packageFilePath = path.join(__dirname, "../dist");
 module.exports = {
 	entry:{
 		index:['./src/app.jsx']
-		//,common:['open']
+		,common:['react','redux']
 	},
 	output:{
 		path: packageFilePath

@@ -40,6 +40,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 import reducers from './redux/reducer/fetch-reducer.js';
 import baseStyle from './style/base.less';
 
+import Header from './component/header/header.jsx';
 import List from 'bundle-loader?lazy&name=app-[name]!./component/list/list.jsx';
 import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';
 import Detail from 'bundle-loader?lazy&name=app-[name]!./component/detail/detail.jsx';
@@ -71,6 +72,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
     <div>
+        <Header/>
         <ul>
           <li><Link to="/">主页</Link></li>
           <li><Link to="/list">列表</Link></li>
