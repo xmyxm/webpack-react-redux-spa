@@ -35,19 +35,19 @@ export default class Home extends Component{
 							<ul>
 								<li className = "item">
 									<div className = "iconbase homegray" ></div>
-									<Link to="/list" className = "name" >主页</Link>
+									<Link to="/home" className = "name" >主页</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase bloggray" ></div>
-									<Link to="/list" className = "name" >博客</Link>
+									<Link to="/detail" className = "name" >博客</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase usergray" ></div>
-									<Link to="/list" className = "name" >关于</Link>
+									<Link to="/me" className = "name" >关于</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase emailgray" ></div>
-									<Link to="/list" className = "name" >联系</Link>
+									<Link to="/email" className = "name" >联系</Link>
 								</li>
 							</ul>
 						</nav>
