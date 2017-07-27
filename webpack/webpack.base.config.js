@@ -32,10 +32,18 @@ module.exports = {
 		        test: /\.less$/,
 		        use: ExtractTextPlugin.extract({use:[ 'css-loader','less-loader'],fallback: 'style-loader'})
 		    },
+			{
+				test: /\.scss$/,
+				use: ExtractTextPlugin.extract({use: ["css-loader", "sass-loader"],fallback: "style-loader"})
+			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [{loader: 'url-loader', options: {limit: 500, name: '[name]-[hash].[ext]'}}]
                 // 内联的base64的图片地址, 图片要小于5k, 直接的url的地址则不解析
+	        },
+	        {
+	        	test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+            	use: [{loader: 'url-loader', options: {limit: 10000, mimetype: 'application/vnd.ms-fontobject'}}]
 	        },
 	        {
 	        	test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
