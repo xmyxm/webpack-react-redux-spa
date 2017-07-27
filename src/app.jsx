@@ -71,7 +71,7 @@ const createComponent = (component) =>() => (
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-    <div>
+    <div className = "blogbox">
         <Header/>
         <ul>
           <li><Link to="/">主页</Link></li>

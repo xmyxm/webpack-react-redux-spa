@@ -2,26 +2,28 @@ import indexcss from './header.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 export default class Home extends Component{
 	constructor(props){
 		super(props);
-		this.state = {openStatus:'menu show'};
+		this.state = {showmenu:false};
 	}
 
 	showhome(){
-		this.setState({openStatus:'menu'});
+
+		this.setState({showmenu:!this.state.showmenu});
 	}
 
 	render(){
 		return (
-			<div onClick = {this.showhome.bind(this)} className={this.state.openStatus}>
-				<header className = "header">
+			<div onClick = {this.showhome.bind(this)} className = "header">
+				<header className = "topbtn">
 					<div className = "backicon" >主页</div>
-					<div className = "tile" >博客</div>
+					<div className = "tile" >test</div>
 					<div className = "blogicon"></div>
 				</header>
-				<div className = "classify">
+				<div className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
 							<div className = "usericon"></div>
 							<div className = "usercontent">
@@ -33,27 +35,19 @@ export default class Home extends Component{
 							<ul>
 								<li className = "item">
 									<div className = "iconbase homegray" ></div>
-									<a href="#top" id="top-link" className = "name" >
-										<span className="icon fa-home">主页</span>
-									</a>
+									<Link to="/list" className = "name" >主页</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase bloggray" ></div>
-									<a href="#portfolio" id="portfolio-link" className = "name" >
-										<span className="icon fa-th">博客</span>
-									</a>
+									<Link to="/list" className = "name" >博客</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase usergray" ></div>
-									<a href="#about" id="about-link" className = "name" >
-										<span className="icon fa-user">关于</span>
-									</a>
+									<Link to="/list" className = "name" >关于</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase emailgray" ></div>
-									<a href="#contact" id="contact-link" className = "name active" >
-										<span className="icon fa-envelope">联系</span>
-									</a>
+									<Link to="/list" className = "name" >联系</Link>
 								</li>
 							</ul>
 						</nav>
