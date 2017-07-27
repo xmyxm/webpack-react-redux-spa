@@ -76,7 +76,7 @@ ReactDOM.render(
         <Header/>
         <Route exact path="/" component = {createComponent(Home)} ></Route>
         <Route path="/home" component = {createComponent(Home)} ></Route>
-        <Route path="/detail" render = {createComponent(Detail)} ></Route>
+        <Route path="/detail/:id" render = {createComponent(Detail)} ></Route>
         <Route path="/me" render = {createComponent(Me)} ></Route>
         <Route path="/email" render = {createComponent(Email)} ></Route>
     </div>

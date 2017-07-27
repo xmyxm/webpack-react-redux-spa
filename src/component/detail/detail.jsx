@@ -8,10 +8,12 @@ export default class Detail extends Component{
 	constructor(props){
 		super(props);
 	}
+	
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
 		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
 	}
+
 	render(){
 		const {children} = this.props;
 		return (
