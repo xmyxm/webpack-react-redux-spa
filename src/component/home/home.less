@@ -1,6 +1,7 @@
 @rem:10rem;
 
 .homebox{
+	color: #555;
 
 	.list{
 
@@ -16,6 +17,22 @@
 				overflow: hidden;
 				white-space: nowrap;
 			}
+
+			.content{
+				text-indent:2em;
+				-webkit-line-clamp: 3;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				-webkit-box-orient: vertical;
+				display: -webkit-box;
+			}
+			.information{
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-size: 12/@rem;
+			}
+
 		}
 	}
 }
