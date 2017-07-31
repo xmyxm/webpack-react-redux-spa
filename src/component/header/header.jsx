@@ -39,7 +39,7 @@ export default class Home extends Component{
 								</li>
 								<li className = "item">
 									<div className = "iconbase bloggray" ></div>
-									<Link to="/detail" className = "name" >博客</Link>
+									<Link to="/home" className = "name" >博客</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase usergray" ></div>
