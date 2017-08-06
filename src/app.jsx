@@ -46,6 +46,7 @@ import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';
 import Detail from 'bundle-loader?lazy&name=app-[name]!./component/detail/detail.jsx';
 import Email from 'bundle-loader?lazy&name=app-[name]!./component/email/email.jsx';
 import Bundle from './component/bundle.jsx';
+import Loading from './component/loading/loading.jsx';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
@@ -57,9 +58,9 @@ const store = createStore(
   applyMiddleware(middleware)
 )
 
-const Loading = function () {
+/*const Loading = function () {
     return <div>Loading...</div>
-}
+}*/
 
 const createComponent = (component) =>() => (
     <Bundle load={component}>
