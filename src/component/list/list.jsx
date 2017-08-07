@@ -13,6 +13,9 @@ export default class List extends Component{
 	}
 } 
 
+//http://qqweb.top/BlogApi/Detail/45
+//http://qqweb.top/BlogApi/WorkList?PageIndex=1&PageSize=10
+
 
 
 
