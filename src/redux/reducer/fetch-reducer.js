@@ -2,7 +2,7 @@ import {REQUEST_POSTS, RESOLVE_POSTS, REJECT_POSTS} from '../action/fetch-action
 
 const defaultlState = {'data': {},'istrue':false, 'isFetching': false,'page':0,'pageSize':10};
 //首次渲染时获取数据
-const fetchData = (state = defaultlState , action = {}) => {
+const fetchData = (state = defaultlState , action = {}) => {debugger
     switch(action.type){
         case REQUEST_POSTS:
             return {'data':{},'isFetching':true,'param':action.param,'page':action.page,'pageSize':action.pageSize};

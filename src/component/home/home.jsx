@@ -2,10 +2,23 @@ import indexcss from './home.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-
+import {fetchPosts} from '../../redux/action/fetch-action.js';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+//console.log({fetchPosts});
+@connect(
+state => ({data:state.data}),
+dispatch => bindActionCreators({fetchPosts},dispatch)
+)
 export default class Home extends Component{
 	constructor(props){
 		super(props);
+	}
+
+	componentDidMount(){
+		console.log(this.props);
+		debugger
+		this.props.fetchPosts('https://m.taobao.com/#index',{test:'11111111111111'});
 	}
 
 	render(){
