@@ -19,7 +19,6 @@ class Home extends Component{
 	componentDidMount(){
 		console.log(this.props);
 		//this.props.fetchPosts('http://qqweb.top/BlogApi/WorkList',{PageIndex:1,PageSize:10});
-		//
 		this.props.fetchPosts('https://m.dianping.com/other/dish/nearestshopapi?dishname=%E7%9F%B3%E9%94%85%E9%B1%BC&lat=31.217388399999997&lng=121.4158023&cityid=1',{});
 	}
 

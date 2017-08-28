@@ -3,15 +3,24 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import share from 'social-share.js/src/js/social-share.js';
 import shareStyle from 'social-share.js/src/css/share.scss';
+import *as action from '../../redux/action/fetch-action.js';
+import {connect} from 'react-redux';
 
-export default class Detail extends Component{
+class Detail extends Component{
 	constructor(props){
 		super(props);
 	}
 	
+	shouldComponentUpdate(nextProps, nextState){
+		console.log('状态改变');
+		return true;
+	}
+
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
 		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
+		//this.props.fetchPosts('http://qqweb.top/BlogApi/Detail/45');
+		this.props.fetchPosts('https://m.dianping.com/other/dish/nearestshopapi?dishname=%E7%9F%B3%E9%94%85%E9%B1%BC&lat=31.217388399999997&lng=121.4158023&cityid=1',{});
 	}
 
 	render(){
@@ -80,6 +89,12 @@ export default class Detail extends Component{
 	}
 } 
 
+
+export default connect(
+	state=> {
+		return {fetchData:state.fetchData}
+	}
+	,action)(Detail);
 
 
 
