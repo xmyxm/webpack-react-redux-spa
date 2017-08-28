@@ -44,7 +44,9 @@ export const fetchPosts = (path, postData) => {
         })
         .then(response => {
             if (response.ok) {
-                response.json().then(json => dispatch(resolvePosts(path, json, postData.page)))
+                response.json().then(
+                    json => dispatch(resolvePosts(path, json, postData.page))
+                )
             } else {
                 console.log("redux action fetch 拉取数据失败", response.status);
             }
