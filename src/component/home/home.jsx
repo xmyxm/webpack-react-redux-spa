@@ -12,8 +12,8 @@ class Home extends Component{
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		debugger
 		console.log('状态改变');
+		return true;
 	}
 
 	componentDidMount(){
