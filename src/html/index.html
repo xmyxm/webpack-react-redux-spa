@@ -10,12 +10,15 @@
     <meta name="format-detection" content="email=no"/>
     <script type="text/javascript">
         (function(doc, win) {
-            var docEl = doc.documentElement,
+            var fontSize,docEl = doc.documentElement,
                 resizeEvt = 'onorientationchange' in window ? 'orientationchange' : 'resize',
                 recalc = function() {
                     var clientWidth = docEl.clientWidth;
                     if (!clientWidth) return;
-                    docEl.style.fontSize = 10 * (clientWidth / 320) + 'px';
+                    fontSize = 10 * (clientWidth / 320);
+                    if(fontSize && fontSize <= 16){
+                        docEl.style.fontSize = fontSize + 'px';
+                    }
                 };
             if (!doc.addEventListener) return;
             win.addEventListener(resizeEvt, recalc, false);
