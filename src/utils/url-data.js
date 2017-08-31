@@ -5,7 +5,6 @@ export const paramToStr = data =>{
 	paramArr.push(attr + '=' + data[attr]);
 	}
 	paramStr = paramArr.join('&');
-	paramStr = '?' + paramStr;
 	return paramStr
 }
 

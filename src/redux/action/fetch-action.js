@@ -35,7 +35,7 @@ export const rejectPosts = (path, error) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
-    let url = path +  paramToStr(postData);
+    let url = path + '?' + paramToStr(postData);
     return dispatch => {
         dispatch(requestPosts(url,postData));
         return fetch(url,{
