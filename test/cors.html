@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+	<div>
+	    <select id="method">
+	        <option value="get">GET</option>
+	        <option value="post">POST</option>
+	        <option value="put">PUT</option>
+	    </select>
+	    <select id="url">
+	        <option value="GetAllChargingData">GetAllChargingData</option>
+	        <option value="Detail">Detail</option>
+	        <option value="WorkList">WorkList</option>
+	    </select>
+	    <input type="button" value="Try it" onclick="sendRequest()" />
+	    <span id='value1'>(Result)</span>
+	</div>
+
+
+	<script>
+
+	    var jsonData = {PageIndex:1,PageSize:10,id:69};
+	    function sendRequest() {
+	    	var serviceUrl = 'http://localhost:51972/API/BlogApi/' +  $('#url').val();
+			var method = $('#method').val();
+			$.ajax({ 
+			data:jsonData,
+			type:method,
+			url:serviceUrl,
+			crossDomain: true,
+			cache:false,
+			success: function(response) { 
+			    alert(response);
+			   }
+			});
+	    }
+	</script>
+
+</body>
+</html>
