@@ -9,8 +9,8 @@
 		height: 44/@rem;;
 		align-items: center;
 		justify-content: space-between;
-		background: #fff;
-		color: #000;
+		background: #000;
+		color: #fff;
 		padding-left: 10/@rem;
 		padding-right: 10/@rem;
 		font-size: 18/@rem;
@@ -23,15 +23,35 @@
 			flex:1;
 		}
 
-		.backicon , .blogicon{
-			display: inline-block;
+		.menuicon{
+			background: url('../../icons/menu-white.svg') no-repeat center;
+		}
+
+		.searchicon{
+			background: url('../../icons/search-white.svg') no-repeat center;
 		}
 
 		.blogicon{
+			background: url('../../icons/blog-white.svg') no-repeat center;
+			background-size: 30/@rem 30/@rem!important;
+		}
+
+		.menuicon , .searchicon, .blogicon{
+			display: inline-block;
 			width: 40/@rem;
 			height: 40/@rem;
-			background: url('../../icons/blogicon.svg') no-repeat center;
-			background-size: 30/@rem 30/@rem;
+			background-size: 20/@rem 20/@rem;
+		}
+
+		&::after{
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			height: 1px;
+			background: #100505;
+			transform: scaleY(.5);
 		}
 	}
 
@@ -48,9 +68,9 @@
 		overflow-y: auto;
 		position: fixed;
 		z-index: 1;
-		background: #222729;
+		background: #181d1f;
 		box-shadow: inset -0.25em 0 0.25em 0 rgba(0, 0, 0, 0.125);
-		color:rgba(255, 255, 255, 0.5);
+		color:#b8b8b8;
 
 		.userinfo{
 			display: flex;
@@ -106,7 +126,7 @@
 					flex:1;
 					text-align: right;
 					text-decoration: none;
-					color:rgba(255, 255, 255, 0.5);
+					color:#b8b8b8;
 				}
 			}
 		}

@@ -10,18 +10,18 @@ export default class Home extends Component{
 		this.state = {showmenu:false};
 	}
 
-	showhome(){
-
+	showhome(e){
+		if(e.target.className == "searchicon" && !this.state.showmenu)return;
 		this.setState({showmenu:!this.state.showmenu});
 	}
 
 	render(){
 		return (
-			<div onClick = {this.showhome.bind(this)} className = "header">
+			<div className = "header" onClick = {this.showhome.bind(this)}>
 				<header className = "topbtn">
-					<div className = "backicon" >主页</div>
-					<div className = "tile" >test</div>
-					<div className = "blogicon"></div>
+					<div className = "menuicon" ></div>
+					<div className = "blogicon" ></div>
+					<Link to="/search" className = "searchicon" ></Link>
 				</header>
 				<div className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
@@ -39,7 +39,7 @@ export default class Home extends Component{
 								</li>
 								<li className = "item">
 									<div className = "iconbase bloggray" ></div>
-									<Link to="/home" className = "name" >博客</Link>
+									<Link to="/list" className = "name" >博客</Link>
 								</li>
 								<li className = "item">
 									<div className = "iconbase usergray" ></div>

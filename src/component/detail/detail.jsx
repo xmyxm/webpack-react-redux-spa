@@ -19,8 +19,7 @@ class Detail extends Component{
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
 		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
-		//this.props.fetchPosts('http://qqweb.top/BlogApi/Detail/45');
-		this.props.fetchPosts('https://m.dianping.com/other/dish/nearestshopapi?dishname=%E7%9F%B3%E9%94%85%E9%B1%BC&lat=31.217388399999997&lng=121.4158023&cityid=1',{});
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{ID:55});
 	}
 
 	render(){

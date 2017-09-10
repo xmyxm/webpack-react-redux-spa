@@ -12,8 +12,10 @@ import baseStyle from './style/base.less';
 import Header from './component/header/header.jsx';
 import Me from 'bundle-loader?lazy&name=app-[name]!./component/me/me.jsx';
 import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';
+import List from 'bundle-loader?lazy&name=app-[name]!./component/list/list.jsx';
 import Detail from 'bundle-loader?lazy&name=app-[name]!./component/detail/detail.jsx';
 import Email from 'bundle-loader?lazy&name=app-[name]!./component/email/email.jsx';
+import Search from 'bundle-loader?lazy&name=app-[name]!./component/search/search.jsx';
 import Bundle from './component/bundle.jsx';
 import Loading from './component/loading/loading.jsx';
 
@@ -36,6 +38,8 @@ ReactDOM.render(
         <Header/>
         <Route exact path="/" component = {createComponent(Home)} ></Route>
         <Route path="/home" component = {createComponent(Home)} ></Route>
+        <Route path="/list" component = {createComponent(List)} ></Route>
+        <Route path="/search" component = {createComponent(Search)}></Route>
         <Route path="/detail/:id" render = {createComponent(Detail)} ></Route>
         <Route path="/me" render = {createComponent(Me)} ></Route>
         <Route path="/email" render = {createComponent(Email)} ></Route>
@@ -46,12 +50,6 @@ ReactDOM.render(
   document.getElementById('app')
 )
 
-
-//<form action="http://qqweb.top/API/BlogApi/WorkList" method="post">
-//    <input type="text" name="PageIndex" value="1" />
-//    <input type="text" name="PageSize" value="10" />
-//    <input type="submit" value="提交"/>
-//</form>
 
 
 
