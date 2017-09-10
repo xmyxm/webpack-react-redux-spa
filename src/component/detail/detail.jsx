@@ -19,7 +19,9 @@ class Detail extends Component{
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
 		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{ID:55});
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:55});
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/AdminUser',{id:55});
+		//this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:55});
 	}
 
 	render(){

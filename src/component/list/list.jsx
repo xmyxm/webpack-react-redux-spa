@@ -24,7 +24,7 @@ class List extends Component{
     		}
     		this.dataloading = false;
     		if(nextProps.fetchData.Json){
-	    		let data = nextProps.fetchData.Json.Data;
+	    		let data = nextProps.fetchData.Json;
 				if(data && data.TotalCount){
 					this.totalCount = data.TotalCount;
 					if(data.PageIndex * data.PageSize >= data.TotalCount){
@@ -72,7 +72,7 @@ class List extends Component{
 						return 	<li key = {item.ID} className = "item" >
 									<Link to={'/detail/' + item.ID} className = "title">{item.Title}</Link>
 									<div className = "tag">Tag:{item.Tag}</div>
-									<p className = "content">{item.Tag}</p>
+									<p className = "content">{item.Content}</p>
 									<div className = "information">
 										<span className = "time">{item.UpdateTime}</span>
 										<span className = "author">晨曦沐枫</span>
