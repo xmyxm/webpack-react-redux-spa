@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import *as action from '../../redux/action/fetch-action.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import DateTool from '../../utils/date-format.js';
 
 class List extends Component{
 	constructor(props){
@@ -78,7 +79,7 @@ class List extends Component{
 										<p className = "content">{item.Content}</p>
 										<div className = "information">
 											<span className = "time">浏览:{item.PageViewTotal}</span>
-											<span className = "author">{item.UpdateTime}</span>
+											<span className = "author">{DateTool.ChangeDateFormat(item.UpdateTime)}</span>
 										</div>
 									</Link>
 								</li>
