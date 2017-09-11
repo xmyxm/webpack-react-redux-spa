@@ -70,13 +70,17 @@ class List extends Component{
 				{
 					(this.bloglist.length > 0) && this.bloglist.map(item => {
 						return 	<li key = {item.ID} className = "item" >
-									<Link to={'/detail/' + item.ID} className = "title">{item.Title}</Link>
-									<div className = "tag">Tag:{item.Tag}</div>
-									<p className = "content">{item.Content}</p>
-									<div className = "information">
-										<span className = "time">{item.UpdateTime}</span>
-										<span className = "author">晨曦沐枫</span>
-									</div>
+									<Link to={'/detail/' + item.ID} className = "clickarea">
+										<div className = "contenthead">
+											<div className = "title">{item.Title}</div>
+											<div className = "tag">分类:{item.SortName}</div>
+										</div>
+										<p className = "content">{item.Content}</p>
+										<div className = "information">
+											<span className = "time">浏览:{item.PageViewTotal}</span>
+											<span className = "author">{item.UpdateTime}</span>
+										</div>
+									</Link>
 								</li>
 					})
 				}	
