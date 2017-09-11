@@ -15,12 +15,11 @@ export const requestPosts = (path,param) => {
 }
 
 //获取数据成功
-export const resolvePosts = (path, json, page) => {
+export const resolvePosts = (path, json) => {
   return {
         type: RESOLVE_POSTS,
         path ,
-        json , 
-        page
+        json 
     }
 }
 
@@ -45,7 +44,7 @@ export const fetchPosts = (path, postData) => {
         .then(response => {
             if (response.ok) {
                 response.json().then(
-                    json => dispatch(resolvePosts(path, json, postData.page))
+                    json => dispatch(resolvePosts(path, json))
                 )
             } else {
                 console.log("redux action fetch 拉取数据失败", response.status);

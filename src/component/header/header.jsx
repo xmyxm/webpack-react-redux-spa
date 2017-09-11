@@ -3,11 +3,35 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import *as action from '../../redux/action/fetch-action.js';
 
-export default class Home extends Component{
+
+class Header extends Component{
 	constructor(props){
 		super(props);
 		this.state = {showmenu:false};
+	}
+
+	shouldComponentUpdate(nextProps, nextState){
+		if(nextProps.fetchData){
+    		if(nextProps.fetchData.isFetching) {
+    			this.dataloading = true;
+    			return false;
+    		}
+    		this.dataloading = false;
+    		if(nextProps.fetchData.Json){
+	    		let data = nextProps.fetchData.Json;
+				if(data && data.ID > 0){
+					this.data = data;
+				}
+    		}
+    	}
+    	return true;
+	}
+
+	componentDidMount(){
+		//debugger
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/AdminUser');
 	}
 
 	showhome(e){
@@ -25,9 +49,13 @@ export default class Home extends Component{
 				</header>
 				<div className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
-							<div className = "usericon"></div>
+							<div className = "usericon">
+								{
+									this.data && <img className = "imgfile" src = {'http://qqweb.top' + this.data.AvatarUrl} />
+								}
+							</div>
 							<div className = "usercontent">
-								<p className = "name">晨曦沐枫</p>
+								<p className = "name">{this.data ? this.data.NickName : "晨曦沐枫"}</p>
 								<p className = "detail">前端工程师</p>
 							</div>
 						</div>
@@ -60,6 +88,11 @@ export default class Home extends Component{
 
 
 
+export default connect(
+	state=> {
+		return {fetchData:state.fetchData}
+	}
+	,action)(Header);
 
 
 

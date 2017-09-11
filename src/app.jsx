@@ -20,7 +20,6 @@ import Bundle from './component/bundle.jsx';
 import Loading from './component/loading/loading.jsx';
 
 const history = createHistory();
-const middleware = routerMiddleware(history);
 const store = configureStore();
 
 const createComponent = (component) =>() => (
@@ -34,17 +33,16 @@ const createComponent = (component) =>() => (
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-    <div className = "blogbox">
-        <Header/>
-        <Route exact path="/" component = {createComponent(Home)} ></Route>
-        <Route path="/home" component = {createComponent(Home)} ></Route>
-        <Route path="/list" component = {createComponent(List)} ></Route>
-        <Route path="/search" component = {createComponent(Search)}></Route>
-        <Route path="/detail/:id" render = {createComponent(Detail)} ></Route>
-        <Route path="/me" render = {createComponent(Me)} ></Route>
-        <Route path="/email" render = {createComponent(Email)} ></Route>
-    </div>
-
+        <div className = "blogbox">
+            <Header/>
+            <Route exact path="/" component = {createComponent(Home)} ></Route>
+            <Route path="/home" component = {createComponent(Home)} ></Route>
+            <Route path="/list" component = {createComponent(List)} ></Route>
+            <Route path="/search" component = {createComponent(Search)}></Route>
+            <Route path="/detail/:id" render = {createComponent(Detail)} ></Route>
+            <Route path="/me" render = {createComponent(Me)} ></Route>
+            <Route path="/email" render = {createComponent(Email)} ></Route>
+        </div>
     </Router>
   </Provider>,
   document.getElementById('app')
