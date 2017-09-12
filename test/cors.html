@@ -16,6 +16,7 @@
 	    <select id="url">
 	        <option value="TestData">TestData</option>
 	        <option value="Detail">Detail</option>
+	        <option value="Query">Query</option>
 	        <option value="WorkList">WorkList</option>
 	        <option value="AdminUser">AdminUser</option>
 	    </select>
@@ -26,7 +27,7 @@
 
 	<script>
 
-	    var jsonData = {PageIndex:1,PageSize:10,id:69};
+	    var jsonData = {PageIndex:1,PageSize:10,id:69,key:'正则'};
 	    function sendRequest() {
 	    	var serviceUrl = 'http://localhost:51972/API/BlogApi/' +  $('#url').val();
 			var method = $('#method').val();
