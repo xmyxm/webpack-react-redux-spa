@@ -5,6 +5,7 @@ import share from 'social-share.js/src/js/social-share.js';
 import shareStyle from 'social-share.js/src/css/share.scss';
 import *as action from '../../redux/action/fetch-action.js';
 import {connect} from 'react-redux';
+import DateTool from '../../utils/date-format.js';
 
 class Detail extends Component{
 	constructor(props){
@@ -31,12 +32,13 @@ class Detail extends Component{
 
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
-		//debugger
 		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
 		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:window.location.pathname.replace(/\/detail\//img,'')});
 	}
 
 	createMarkup(html) {
+		//方便测试，图片路径补全
+		html = html.replace(/\/UploadFile\/contentImg\//g,'http://qqweb.top/UploadFile/contentImg/');
 	  return {__html: html};
 	}
 
@@ -49,7 +51,7 @@ class Detail extends Component{
 					<div className = "contentarea" >
 						<div className = "title">
 							<div className = "text">{this.data.DetailContent.Title}</div>
-							<div className = "option">写于 {this.data.DetailContent.CreateTime} | 分类于 {this.data.DetailContent.SortName}</div>
+							<div className = "option">写于 {DateTool.ChangeDateFormat(this.data.DetailContent.CreateTime)} | 分类于 {this.data.DetailContent.SortName}</div>
 				 		</div>
 					 	<div className = "content" dangerouslySetInnerHTML={this.createMarkup(this.data.DetailContent.Content)}></div>
 					 	<div className = "tag">
@@ -59,6 +61,9 @@ class Detail extends Component{
 						 			return <span key = {index} className = "text">{item}</span>
 						 		})
 						 	}
+					 	</div>
+					 	<div className = "uptime">
+					 		修改于 {DateTool.Format(this.data.DetailContent.UpdateTime,"yyyy年MM月dd日 hh:mm:ss")}
 					 	</div>
 					</div>
 				}
