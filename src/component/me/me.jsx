@@ -24,7 +24,7 @@ export default class Me extends Component{
 						<img className = "imgfile" src = {imgctrip} />
 					</div>
 					<div className = "arrows"></div>
-					<div className = "dianpinglogo">arrows
+					<div className = "dianpinglogo">
 						<img className = "imgfile" src = {imgdianping} />
 					</div>
 				</div>
