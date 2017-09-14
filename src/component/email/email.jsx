@@ -1,6 +1,6 @@
-import indexcss from './email.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
+import './email.less';
 
 export default class Me extends Component{
 	constructor(props){

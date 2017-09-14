@@ -1,4 +1,3 @@
-import indexcss from './list.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
@@ -6,6 +5,7 @@ import *as action from '../../redux/action/fetch-action.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import DateTool from '../../utils/date-format.js';
+import './list.less';
 
 class List extends Component{
 	constructor(props){

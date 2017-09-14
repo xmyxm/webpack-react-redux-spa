@@ -1,4 +1,3 @@
-import indexcss from './detail.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import share from 'social-share.js/src/js/social-share.js';
@@ -6,6 +5,8 @@ import shareStyle from 'social-share.js/src/css/share.scss';
 import *as action from '../../redux/action/fetch-action.js';
 import {connect} from 'react-redux';
 import DateTool from '../../utils/date-format.js';
+import Cube from '../animation/cube.jsx';
+import './detail.less';
 
 class Detail extends Component{
 	constructor(props){
@@ -67,7 +68,9 @@ class Detail extends Component{
 					 	</div>
 					</div>
 				}
-
+				{
+					!this.data && <Cube />
+				}
 			 </div>
 	    )
 	}

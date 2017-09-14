@@ -1,8 +1,8 @@
-import indexcss from './home.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import imglink from '../../icons/shanghai.jpg'
+import './home.less';
 
 export default class Home extends Component{
 	constructor(props){

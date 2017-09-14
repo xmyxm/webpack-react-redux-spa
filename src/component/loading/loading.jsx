@@ -1,6 +1,6 @@
-import indexcss from './loading.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
+import './loading.less';
 
 export default class Loading extends Component{
 	render(){

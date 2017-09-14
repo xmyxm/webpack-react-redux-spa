@@ -1,8 +1,8 @@
-import indexcss from './me.less';
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import imgctrip from '../../icons/ctrip_logo.png';
 import imgdianping from '../../icons/dianping_logo.png';
+import './me.less';
 
 export default class Me extends Component{
 	constructor(props){
