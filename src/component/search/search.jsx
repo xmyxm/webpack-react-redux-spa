@@ -26,7 +26,11 @@ export default class Search extends Component{
     		}
     		this.dataloading = false;
     		if(nextProps.fetchData.Json){
-	    		let data = nextProps.fetchData.Json;
+				//debugger
+				let data = nextProps.fetchData.Json;
+				if(data && data.PageIndex == 1){
+					this.bloglist.length = 0 ;
+				}
 				if(data && data.TotalCount){
 					this.totalCount = data.TotalCount;
 					if(data.PageIndex * data.PageSize >= data.TotalCount){
@@ -40,7 +44,8 @@ export default class Search extends Component{
 						return true;
 					}
 				}
-    		}
+				return true;
+			}
     	}
     	return false;
 	}
@@ -62,17 +67,21 @@ export default class Search extends Component{
     }
 
 	pullBlogData(){
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query',{PageIndex:this.page,key:this.key});
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query',{PageIndex:this.page,key:this.searchValue || ''});
 	}
 
 	Query(){
 		this.page = 1;
-		this.key = this.refs.keyname.value;
+		this.searchValue = this.refs.keyname.value;
 		this.pullBlogData();
 	}
 
-	userEntry(e){
-		//debugger
+	userChange(e){
+		if(this.refs.keyname.value != this.searchValue)this.Query();
+	}
+
+	userKeyup(e){
+		if(e.keyCode === 13)this.Query();
 	}
 
 	render(){
@@ -81,7 +90,7 @@ export default class Search extends Component{
 				<div className = "head" >
 					<div className = "searchtext" >搜索更懂你！</div>
 					<div className="searchinfo">
-						<input type = "text" name="keyname" onInput = {this.userEntry.bind(this)} className="keytext" ref = "keyname" />
+						<input type = "text" name="keyname" onKeyUp = {this.userKeyup.bind(this)} onChange = {this.userChange.bind(this)} className="keytext" ref = "keyname" />
 						<i className = "so" ></i>
 						<i className = "del" ></i>
 						<div className = "searchbtn" onClick = {this.Query.bind(this)} >搜索</div>
