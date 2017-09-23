@@ -8,7 +8,8 @@ import DateTool from '../../utils/date-format.js';
 import Cube from '../animation/cube.jsx';
 import './detail.less';
 
-class Detail extends Component{
+@connect(state => {return {fetchData:state.fetchData}},action)
+export default class Detail extends Component{
 	constructor(props){
 		super(props);
 		this.dataloading = true;
@@ -56,7 +57,7 @@ class Detail extends Component{
 				 		</div>
 					 	<div className = "content" dangerouslySetInnerHTML={this.createMarkup(this.data.DetailContent.Content)}></div>
 					 	<div className = "tag">
-					 		我的标签: 
+					 		<span className = "mr6">我的标签: </span>
 						 	{
 						 		this.data.DetailContent.Tag.replace(/^;+|;+$/g,"").split(";").map((item,index) => {
 						 			return <span key = {index} className = "text">{item}</span>
@@ -77,11 +78,7 @@ class Detail extends Component{
 } 
 
 
-export default connect(
-	state=> {
-		return {fetchData:state.fetchData}
-	}
-	,action)(Detail);
+
 
 
 

@@ -10,6 +10,7 @@ config.plugins.push(
 );
 //source-map的打包可以告诉我们错误源自源码的具体的位置,devtool来选定生成的source-map的详细程度
 config.devtool = 'source-map';//推荐production
+config.output.publicPath = 'http://qqweb.top/m/';//上线配置文件公共路径直接替换为线上域名
 module.exports = config;
 
 

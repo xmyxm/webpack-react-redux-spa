@@ -4,9 +4,11 @@ import {Link} from 'react-router-dom';
 import *as action from '../../redux/action/fetch-action.js';
 import {connect} from 'react-redux';
 import DateTool from '../../utils/date-format.js';
+import Eat from '../animation/eat.jsx';
 import './search.less';
 
-class Search extends Component{
+@connect(state => {return {fetchData:state.fetchData}},action)
+export default class Search extends Component{
 	constructor(props){
 		super(props);
 		this.page = 1;
@@ -106,16 +108,7 @@ class Search extends Component{
 					}	
 					</ul>
 					{
-						this.imgLoading ?  <div className="loader">
-												<div className = "pacman">
-													<div></div>
-													<div></div>
-													<div></div>
-													<div></div>
-													<div></div>
-												</div>
-						 					</div>
-						 				:   <div className = "bottominfo" >--- 我是有底线的 ---</div>
+						this.imgLoading ?  <Eat/> : <div className = "bottominfo" >--- 我是有底线的 ---</div>
 					}
 				</div>
 			</div>
@@ -124,11 +117,7 @@ class Search extends Component{
 } 
 
 
-export default connect(
-	state=> {
-		return {fetchData:state.fetchData}
-	}
-	,action)(Search);
+
 
 
 
