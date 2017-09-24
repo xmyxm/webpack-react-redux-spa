@@ -9,10 +9,13 @@ webpackJsonp([0],{
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.default = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
 
 var _reactDom = __webpack_require__(39);
 
@@ -22,11 +25,11 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _socialShare = __webpack_require__(305);
+var _socialShare = __webpack_require__(307);
 
 var _socialShare2 = _interopRequireDefault(_socialShare);
 
-var _share = __webpack_require__(304);
+var _share = __webpack_require__(306);
 
 var _share2 = _interopRequireDefault(_share);
 
@@ -40,11 +43,11 @@ var _dateFormat = __webpack_require__(295);
 
 var _dateFormat2 = _interopRequireDefault(_dateFormat);
 
-var _cube = __webpack_require__(296);
+var _cube = __webpack_require__(298);
 
 var _cube2 = _interopRequireDefault(_cube);
 
-__webpack_require__(298);
+__webpack_require__(300);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -56,7 +59,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Detail = function (_Component) {
+var Detail = (_dec = (0, _reactRedux.connect)(function (state) {
+	return { fetchData: state.fetchData };
+}, action), _dec(_class = function (_Component) {
 	_inherits(Detail, _Component);
 
 	function Detail(props) {
@@ -133,7 +138,11 @@ var Detail = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'tag' },
-						'\u6211\u7684\u6807\u7B7E:',
+						_react2.default.createElement(
+							'span',
+							{ className: 'mr6' },
+							'\u6211\u7684\u6807\u7B7E: '
+						),
 						this.data.DetailContent.Tag.replace(/^;+|;+$/g, "").split(";").map(function (item, index) {
 							return _react2.default.createElement(
 								'span',
@@ -155,11 +164,7 @@ var Detail = function (_Component) {
 	}]);
 
 	return Detail;
-}(_react.Component);
-
-exports.default = (0, _reactRedux.connect)(function (state) {
-	return { fetchData: state.fetchData };
-}, action)(Detail);
+}(_react.Component)) || _class);
 
 /*			 	<div className = "share-component" data-mobile-sites="weibo,qq,qzone,tencent"></div>
 			 	<div className = "comment">
@@ -169,6 +174,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 			 		</div>
 					<div className = "commentbtn" >评论</div>
 			 	</div>*/
+
+exports.default = Detail;
 
 /***/ }),
 
@@ -227,7 +234,7 @@ exports.default = {
 
 /***/ }),
 
-/***/ 296:
+/***/ 298:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -246,7 +253,7 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(297);
+__webpack_require__(299);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -289,28 +296,28 @@ function Square() {
 
 /***/ }),
 
-/***/ 297:
+/***/ 299:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 298:
+/***/ 300:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 304:
+/***/ 306:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 305:
+/***/ 307:
 /***/ (function(module, exports) {
 
 /**

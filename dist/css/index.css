@@ -190,81 +190,53 @@ li {
   margin-top: 2rem;
   text-decoration: none;
 }
-.listbox {
-  color: #555;
-}
-.listbox .list {
-  padding-top: 0.5rem;
-}
-.listbox .list .item {
-  position: relative;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.listbox .list .item .clickarea {
-  text-decoration: none;
-  display: block;
-  color: #555;
-}
-.listbox .list .item .clickarea .contenthead {
-  display: flex;
-  box-pack: justify;
-  align-items: center;
-  justify-content: space-between;
-}
-.listbox .list .item .clickarea .contenthead .title {
-  flex: 1;
-  font-size: 1.4rem;
-  text-decoration: none;
-  color: #555;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-weight: 400;
-}
-.listbox .list .item .clickarea .contenthead .tag {
-  padding-left: 1rem;
-  font-size: 1.2rem;
-}
-.listbox .list .item .clickarea .content {
-  text-indent: 2em;
-  -webkit-line-clamp: 3;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  margin: 0.4rem 0;
-}
-.listbox .list .item .clickarea .information {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.2rem;
-}
-.listbox .list .item .clickarea::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: #e0dcdc;
-  transform: scaleY(0.5);
-}
-.listbox .bottominfo {
-  color: #000;
-  padding: 10px 0px;
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 200;
-}
-.listbox .loader {
+.loader {
   height: 50px;
   text-align: center;
   padding: 5px;
 }
-.listbox .pacman > div:first-of-type,
-.listbox .pacman > div:nth-child(2) {
+.loader .pacman {
+  position: relative;
+  display: inline-block;
+}
+.loader .pacman > div:nth-child(3) {
+  -webkit-animation: pacman-balls 1s -0.66s infinite linear;
+  animation: pacman-balls 1s -0.66s infinite linear;
+}
+.loader .pacman > div:nth-child(4) {
+  -webkit-animation: pacman-balls 1s -0.33s infinite linear;
+  animation: pacman-balls 1s -0.33s infinite linear;
+}
+.loader .pacman > div:nth-child(5) {
+  -webkit-animation: pacman-balls 1s 0s infinite linear;
+  animation: pacman-balls 1s 0s infinite linear;
+}
+.loader .pacman > div:first-of-type {
+  -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+  animation: rotate_pacman_half_up 0.5s 0s infinite;
+}
+.loader .pacman > div:nth-child(2) {
+  -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+  animation: rotate_pacman_half_down .5s 0s infinite;
+  margin-top: -50px;
+}
+.loader .pacman > div:nth-child(3),
+.loader .pacman > div:nth-child(4),
+.loader .pacman > div:nth-child(5),
+.loader .pacman > div:nth-child(6) {
+  background-color: #000;
+  border-radius: 100%;
+  margin: 2px;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  -webkit-transform: translate(0, -6.25px);
+  transform: translate(0, -6.25px);
+  top: 25px;
+  left: 100px;
+}
+.loader .pacman > div:first-of-type,
+.loader .pacman > div:nth-child(2) {
   width: 0;
   height: 0;
   border-right: 25px solid transparent;
@@ -336,45 +308,73 @@ li {
     transform: translate(-100px, -6.25px);
   }
 }
-.listbox .pacman {
+.listbox {
+  color: #555;
+}
+.listbox .list {
+  padding-top: 0.5rem;
+}
+.listbox .list .item {
   position: relative;
-  display: inline-block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
-.listbox .pacman > div:nth-child(3) {
-  -webkit-animation: pacman-balls 1s -0.66s infinite linear;
-  animation: pacman-balls 1s -0.66s infinite linear;
+.listbox .list .item .clickarea {
+  text-decoration: none;
+  display: block;
+  color: #555;
 }
-.listbox .pacman > div:nth-child(4) {
-  -webkit-animation: pacman-balls 1s -0.33s infinite linear;
-  animation: pacman-balls 1s -0.33s infinite linear;
+.listbox .list .item .clickarea .contenthead {
+  display: flex;
+  box-pack: justify;
+  align-items: center;
+  justify-content: space-between;
 }
-.listbox .pacman > div:nth-child(5) {
-  -webkit-animation: pacman-balls 1s 0s infinite linear;
-  animation: pacman-balls 1s 0s infinite linear;
+.listbox .list .item .clickarea .contenthead .title {
+  flex: 1;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #555;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 400;
 }
-.listbox .pacman > div:first-of-type {
-  -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
-  animation: rotate_pacman_half_up 0.5s 0s infinite;
+.listbox .list .item .clickarea .contenthead .tag {
+  padding-left: 1rem;
+  font-size: 1.2rem;
 }
-.listbox .pacman > div:nth-child(2) {
-  -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
-  animation: rotate_pacman_half_down .5s 0s infinite;
-  margin-top: -50px;
+.listbox .list .item .clickarea .content {
+  text-indent: 2em;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  margin: 0.4rem 0;
 }
-.listbox .pacman > div:nth-child(3),
-.listbox .pacman > div:nth-child(4),
-.listbox .pacman > div:nth-child(5),
-.listbox .pacman > div:nth-child(6) {
-  background-color: #000;
-  border-radius: 100%;
-  margin: 2px;
-  width: 10px;
-  height: 10px;
+.listbox .list .item .clickarea .information {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+.listbox .list .item .clickarea::after {
+  content: "";
   position: absolute;
-  -webkit-transform: translate(0, -6.25px);
-  transform: translate(0, -6.25px);
-  top: 25px;
-  left: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #e0dcdc;
+  transform: scaleY(0.5);
+}
+.listbox .bottominfo {
+  color: #000;
+  padding: 10px 0px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 200;
 }
 @font-face {
   font-family: "socialshare";
@@ -676,13 +676,17 @@ li {
   font-size: 1.2rem;
   padding-bottom: 1rem;
 }
-.detailbox .contentarea .tag {
-  margin-top: 10px;
-}
+.detailbox .contentarea .tag .mr6,
 .detailbox .contentarea .tag .text {
   font-size: 1.2rem;
-  margin-left: 0.6rem;
+  margin-right: 0.6rem;
   position: relative;
+  display: inline-block;
+  margin-top: 6px;
+}
+.detailbox .contentarea .tag .text {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 .detailbox .contentarea .tag .text::after {
   content: "";

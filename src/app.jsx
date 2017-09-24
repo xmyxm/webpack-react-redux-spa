@@ -20,6 +20,11 @@ import Bundle from './component/bundle.jsx';
 import Loading from './component/loading/loading.jsx';
 
 const history = createHistory();
+/*const history = createHistory({
+  basename: '/the/base'
+  //basename: '/index.html'
+})*/
+
 const store = configureStore();
 
 const createComponent = (component) =>() => (
