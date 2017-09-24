@@ -817,4 +817,4 @@ function Square() {
 /***/ })
 
 });
-//# sourceMappingURL=app-detail-0.js.map
+//# sourceMappingURL=app-detail-d3c6526c.js.map

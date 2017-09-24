@@ -1,6 +1,6 @@
-webpackJsonp([2],{
+webpackJsonp([5],{
 
-/***/ 291:
+/***/ 290:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21,13 +21,7 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouterDom = __webpack_require__(69);
-
-var _shanghai = __webpack_require__(308);
-
-var _shanghai2 = _interopRequireDefault(_shanghai);
-
-__webpack_require__(300);
+__webpack_require__(301);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37,91 +31,80 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Home = function (_Component) {
-	_inherits(Home, _Component);
+var Me = function (_Component) {
+	_inherits(Me, _Component);
 
-	function Home(props) {
-		_classCallCheck(this, Home);
+	function Me(props) {
+		_classCallCheck(this, Me);
 
-		return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+		return _possibleConstructorReturn(this, (Me.__proto__ || Object.getPrototypeOf(Me)).call(this, props));
 	}
 
-	_createClass(Home, [{
+	_createClass(Me, [{
 		key: 'render',
 		value: function render() {
 			return _react2.default.createElement(
 				'div',
-				{ className: 'homebox' },
-				_react2.default.createElement('img', { className: 'headimg', src: _shanghai2.default }),
+				{ className: 'linkbox' },
 				_react2.default.createElement(
-					'h1',
-					{ className: 'title' },
-					'\u8FD9\u662F\u4E00\u4E2A\u5173\u4E8E\u524D\u7AEF\u6280\u672F\u5206\u4EAB\u7684\u535A\u5BA2'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'CSS\u6837\u5F0F,Dom\u5143\u7D20'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'JavaScript\u76F8\u5173\u77E5\u8BC6'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'Hybrid\u4F7F\u7528'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'Nodejs\u76F8\u5173\u6280\u672F'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'\u6D4F\u89C8\u5668\u76F8\u5173\u6280\u672F'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'React\u751F\u6001\u5708'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'classes' },
-					'ES6-7\u76F8\u5173'
-				),
-				_react2.default.createElement(
-					_reactRouterDom.Link,
-					{ to: '/list', className: 'gobtn' },
-					'\u9605\u89C8'
+					'ul',
+					null,
+					_react2.default.createElement(
+						'li',
+						{ className: 'item' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'icon' },
+							_react2.default.createElement('div', { className: 'github' }),
+							_react2.default.createElement(
+								'span',
+								{ className: 'text' },
+								'github'
+							)
+						),
+						_react2.default.createElement(
+							'a',
+							{ className: 'site', href: 'https://github.com/xmyxm' },
+							'https://github.com/xmyxm'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						{ className: 'item' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'icon' },
+							_react2.default.createElement('div', { className: 'qq' }),
+							_react2.default.createElement(
+								'span',
+								{ className: 'text' },
+								'\u90AE\u7BB1'
+							)
+						),
+						_react2.default.createElement(
+							'a',
+							{ className: 'site', href: 'https://github.com/xmyxm' },
+							'myco_xmy@qq.com'
+						)
+					)
 				)
 			);
 		}
 	}]);
 
-	return Home;
+	return Me;
 }(_react.Component);
 
-exports.default = Home;
+exports.default = Me;
 
 /***/ }),
 
-/***/ 300:
+/***/ 301:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-
-/***/ 308:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "shanghai-9ef582088ae42b480942e89588ebf086.jpg";
-
 /***/ })
 
 });
-//# sourceMappingURL=app-home-2.js.map
+//# sourceMappingURL=app-email-0da663d7.js.map

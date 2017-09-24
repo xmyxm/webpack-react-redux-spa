@@ -9732,6 +9732,11 @@ var _loading2 = _interopRequireDefault(_loading);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var history = (0, _createBrowserHistory2.default)();
+/*const history = createHistory({
+  basename: '/the/base'
+  //basename: '/index.html'
+})*/
+
 var store = (0, _configureStore2.default)();
 
 var createComponent = function createComponent(component) {

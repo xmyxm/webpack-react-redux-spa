@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([1],{
 
 /***/ 294:
 /***/ (function(module, exports, __webpack_require__) {
@@ -9,8 +9,11 @@ webpackJsonp([3],{
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
 
 var _reactDom = __webpack_require__(39);
 
@@ -32,7 +35,11 @@ var _dateFormat = __webpack_require__(295);
 
 var _dateFormat2 = _interopRequireDefault(_dateFormat);
 
-__webpack_require__(303);
+var _eat = __webpack_require__(296);
+
+var _eat2 = _interopRequireDefault(_eat);
+
+__webpack_require__(305);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -44,7 +51,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Search = function (_Component) {
+var Search = (_dec = (0, _reactRedux.connect)(function (state) {
+	return { fetchData: state.fetchData };
+}, action), _dec(_class = function (_Component) {
 	_inherits(Search, _Component);
 
 	function Search(props) {
@@ -70,20 +79,29 @@ var Search = function (_Component) {
 				}
 				this.dataloading = false;
 				if (nextProps.fetchData.Json) {
+					//debugger
 					var data = nextProps.fetchData.Json;
-					if (data && data.TotalCount) {
-						this.totalCount = data.TotalCount;
-						if (data.PageIndex * data.PageSize >= data.TotalCount) {
-							this.imgLoading = false;
-						} else {
-							++this.page;
-							this.imgLoading = true;
+					if (data) {
+						if (data.PageIndex == 1) {
+							this.bloglist.length = 0;
 						}
-						if (data.BlogWorkList && data.BlogWorkList.length) {
-							this.bloglist = this.bloglist.concat(data.BlogWorkList);
-							return true;
+						if (data.TotalCount) {
+							this.totalCount = data.TotalCount;
+							if (data.PageIndex * data.PageSize >= data.TotalCount) {
+								this.imgLoading = false;
+							} else {
+								++this.page;
+								this.imgLoading = true;
+							}
+							if (data.BlogWorkList && data.BlogWorkList.length) {
+								this.bloglist = this.bloglist.concat(data.BlogWorkList);
+								return true;
+							}
+						} else {
+							this.imgLoading = false;
 						}
 					}
+					return true;
 				}
 			}
 			return false;
@@ -109,19 +127,24 @@ var Search = function (_Component) {
 	}, {
 		key: 'pullBlogData',
 		value: function pullBlogData() {
-			this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query', { PageIndex: this.page, key: this.key });
+			this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query', { PageIndex: this.page, key: this.searchValue || '' });
 		}
 	}, {
 		key: 'Query',
 		value: function Query() {
 			this.page = 1;
-			this.key = this.refs.keyname.value;
+			this.searchValue = this.refs.keyname.value;
 			this.pullBlogData();
 		}
 	}, {
-		key: 'userEntry',
-		value: function userEntry(e) {
-			//debugger
+		key: 'userChange',
+		value: function userChange(e) {
+			if (this.refs.keyname.value != this.searchValue) this.Query();
+		}
+	}, {
+		key: 'userKeyup',
+		value: function userKeyup(e) {
+			if (e.keyCode === 13) this.Query();
 		}
 	}, {
 		key: 'render',
@@ -140,7 +163,7 @@ var Search = function (_Component) {
 					_react2.default.createElement(
 						'div',
 						{ className: 'searchinfo' },
-						_react2.default.createElement('input', { type: 'text', name: 'keyname', onInput: this.userEntry.bind(this), className: 'keytext', ref: 'keyname' }),
+						_react2.default.createElement('input', { type: 'text', name: 'keyname', onKeyUp: this.userKeyup.bind(this), onChange: this.userChange.bind(this), className: 'keytext', ref: 'keyname' }),
 						_react2.default.createElement('i', { className: 'so' }),
 						_react2.default.createElement('i', { className: 'del' }),
 						_react2.default.createElement(
@@ -202,19 +225,7 @@ var Search = function (_Component) {
 							);
 						})
 					),
-					this.imgLoading ? _react2.default.createElement(
-						'div',
-						{ className: 'loader' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'pacman' },
-							_react2.default.createElement('div', null),
-							_react2.default.createElement('div', null),
-							_react2.default.createElement('div', null),
-							_react2.default.createElement('div', null),
-							_react2.default.createElement('div', null)
-						)
-					) : _react2.default.createElement(
+					this.imgLoading ? _react2.default.createElement(_eat2.default, null) : _react2.default.createElement(
 						'div',
 						{ className: 'bottominfo' },
 						'--- \u6211\u662F\u6709\u5E95\u7EBF\u7684 ---'
@@ -225,11 +236,8 @@ var Search = function (_Component) {
 	}]);
 
 	return Search;
-}(_react.Component);
-
-exports.default = (0, _reactRedux.connect)(function (state) {
-	return { fetchData: state.fetchData };
-}, action)(Search);
+}(_react.Component)) || _class);
+exports.default = Search;
 
 /***/ }),
 
@@ -288,7 +296,51 @@ exports.default = {
 
 /***/ }),
 
-/***/ 303:
+/***/ 296:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = Square;
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(297);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Square() {
+    return _react2.default.createElement(
+        'div',
+        { className: 'loader' },
+        _react2.default.createElement(
+            'div',
+            { className: 'pacman' },
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null),
+            _react2.default.createElement('div', null)
+        )
+    );
+}
+
+/***/ }),
+
+/***/ 297:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 305:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -296,4 +348,4 @@ exports.default = {
 /***/ })
 
 });
-//# sourceMappingURL=app-search-3.js.map
+//# sourceMappingURL=app-search-a2c3be57.js.map

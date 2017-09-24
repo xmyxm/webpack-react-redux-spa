@@ -28,20 +28,24 @@ export default class Search extends Component{
     		if(nextProps.fetchData.Json){
 				//debugger
 				let data = nextProps.fetchData.Json;
-				if(data && data.PageIndex == 1){
-					this.bloglist.length = 0 ;
-				}
-				if(data && data.TotalCount){
-					this.totalCount = data.TotalCount;
-					if(data.PageIndex * data.PageSize >= data.TotalCount){
-						this.imgLoading = false;
-					}else{
-						++this.page;
-						this.imgLoading = true;
+				if(data){
+					if(data.PageIndex == 1){
+						this.bloglist.length = 0 ;
 					}
-					if(data.BlogWorkList && data.BlogWorkList.length){
-						this.bloglist = this.bloglist.concat(data.BlogWorkList);
-						return true;
+					if(data.TotalCount){
+						this.totalCount = data.TotalCount;
+						if(data.PageIndex * data.PageSize >= data.TotalCount){
+							this.imgLoading = false;
+						}else{
+							++this.page;
+							this.imgLoading = true;
+						}
+						if(data.BlogWorkList && data.BlogWorkList.length){
+							this.bloglist = this.bloglist.concat(data.BlogWorkList);
+							return true;
+						}
+					}else{
+						this.imgLoading = false;
 					}
 				}
 				return true;
