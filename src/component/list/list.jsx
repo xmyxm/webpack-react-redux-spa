@@ -54,8 +54,8 @@ export default class List extends Component{
     	let _self = this;
 		window.onscroll = (e) => { 
             if (!_self.imgLoading || _self.dataloading) return;
-
-            if (document.body.scrollTop + window.innerHeight + 150 > document.body.scrollHeight) {
+            	let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 150;
+            if (alltop > document.body.scrollHeight) {
                 _self.pullBlogData();
             }
         }

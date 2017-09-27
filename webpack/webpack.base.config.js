@@ -38,6 +38,7 @@ module.exports = {
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
+                //url-loader是对file-loader的上层封装，一般限制小图片转 base64 可以用 url-loader
                 use: [{loader: 'url-loader', options: {limit: 500, name: '[name]-[hash].[ext]'}}]
                 // 内联的base64的图片地址, 图片要小于5k, 直接的url的地址则不解析
 	        },
