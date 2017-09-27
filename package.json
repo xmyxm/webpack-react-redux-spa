@@ -21,8 +21,8 @@
   "dependencies": {
     "history": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.2",
