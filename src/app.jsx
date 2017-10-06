@@ -41,6 +41,7 @@ ReactDOM.render(
         <div className = "blogbox">
             <Header/>
             <Route exact path="/" component = {createComponent(Home)} ></Route>
+            <Route exact path="/m/index.html" component = {createComponent(Home)} ></Route>
             <Route path="/home" component = {createComponent(Home)} ></Route>
             <Route path="/list" component = {createComponent(List)} ></Route>
             <Route path="/search" component = {createComponent(Search)}></Route>
