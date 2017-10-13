@@ -1,5 +1,6 @@
-![mahua](mahua-logo.jpg)
-##基于react的单页应用脚手架
+##webpack-react-redux-spa
+
+###基于react的单页应用脚手架
 
 ###依赖主要组件如下：
 
