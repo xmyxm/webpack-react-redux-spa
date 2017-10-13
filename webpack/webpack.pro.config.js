@@ -8,6 +8,27 @@ config.plugins.push(
 	//css 文件抽离设置 如为dev 环境 disable必须为 true 才会把 css 打为内联样式来实现热刷新，若线上环境必须disable必须为false才会单独抽离出css文件
 	new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
 );
+// 线上打包启用代码压缩工具
+//config.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
+
+config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    // 最紧凑的输出
+    beautify: false,
+    // 删除所有的注释
+    comments: false,
+    compress: {
+      // 在UglifyJs删除没有用到的代码时不输出警告  
+      warnings: false,
+      // 删除所有的 `console` 语句
+      // 还可以兼容ie浏览器
+      drop_console: true,
+      // 内嵌定义了但是只用到一次的变量
+      collapse_vars: true,
+      // 提取出出现多次但是没有定义成变量去引用的静态值
+      reduce_vars: true,
+    }
+}));
+
 //source-map的打包可以告诉我们错误源自源码的具体的位置,devtool来选定生成的source-map的详细程度
 config.devtool = 'source-map';//推荐production
 config.output.publicPath = 'http://qqweb.top/m/';//上线配置文件公共路径直接替换为线上域名
