@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import {combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-//import createHistory from 'history/createBrowserHistory';
+//域名根路径无法指向当前web站点index.html页面时启用 hash 路由
 import createHistory from 'history/createHashHistory'
-
-//import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import { HashRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
+//import createHistory from 'history/createBrowserHistory';
+//import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import configureStore from './redux/configureStore.js';
