@@ -61,11 +61,13 @@ export default class Search extends Component{
     componentDidMount(){
     	let _self = this;
 		window.onscroll = (e) => { 
-            if (!_self.imgLoading || _self.dataloading) return;
 
-            if (document.body.scrollTop + window.innerHeight + 150 > document.body.scrollHeight) {
+            if (!_self.imgLoading || _self.dataloading) return;
+            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 150;
+            if (alltop > document.body.scrollHeight) {
                 _self.pullBlogData();
             }
+
         }
         _self.pullBlogData();
     }
