@@ -1,8 +1,8 @@
-##webpack-react-redux-spa
+## webpack-react-redux-spa
 
-###基于react的单页应用脚手架
+### 基于react的单页应用脚手架
 
-###依赖主要组件如下：
+### 依赖主要组件如下：
 
 react 16.x
 
@@ -12,11 +12,11 @@ redux 3.x
 
 react-redux 5.x
 
-###说明：
+### 说明：
 
 事例为一个单页博客项目
 
-###特点：
+### 特点：
 
 1.基本跟随使用目前`最新的react全家桶`
 
@@ -25,7 +25,7 @@ react-redux 5.x
 3.项目功能简单完整，是一个简单的脚手架，可以改写为自己的项目，非常适合新手学习，可作为react入门demo
 
 
-###使用步骤：
+### 使用步骤：
 
 * git clone 本项目
 
@@ -38,7 +38,7 @@ react-redux 5.x
 * 此项目 线上访问地址 [http://qqweb.top/m/index.html](http://qqweb.top/m/index.html) 
 
 
-##关于作者
+## 关于作者
 
 ```javascript
   var info = {
