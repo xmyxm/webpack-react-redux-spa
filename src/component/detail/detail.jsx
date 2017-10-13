@@ -34,8 +34,9 @@ export default class Detail extends Component{
 
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
-		console.log('输出分享组件暴露api : ' + typeof window.socialShare);
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:window.location.pathname.replace(/\/detail\//img,'')});
+		//console.log('输出分享组件暴露api : ' + typeof window.socialShare);
+		let id = (window.location.hash || window.location.pathname).replace(/\D/g,'');
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:id});
 	}
 
 	createMarkup(html) {

@@ -2,8 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import createHistory from 'history/createBrowserHistory';
-import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
+//import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory'
+
+//import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link} from 'react-router-dom';
+
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import configureStore from './redux/configureStore.js';
 import reducers from './redux/reducer/fetch-reducer.js';
@@ -19,11 +24,13 @@ import Search from 'bundle-loader?lazy&name=app-[name]!./component/search/search
 import Bundle from './component/bundle.jsx';
 import Loading from './component/loading/loading.jsx';
 
-const history = createHistory();
+
 /*const history = createHistory({
   basename: '/the/base'
   //basename: '/index.html'
 })*/
+
+const history = createHistory();
 
 const store = configureStore();
 
@@ -41,6 +48,7 @@ ReactDOM.render(
         <div className = "blogbox">
             <Header/>
             <Route exact path="/" component = {createComponent(Home)} ></Route>
+            <Route exact path="/index.html" component = {createComponent(Home)} ></Route>
             <Route exact path="/m/index.html" component = {createComponent(Home)} ></Route>
             <Route path="/home" component = {createComponent(Home)} ></Route>
             <Route path="/list" component = {createComponent(List)} ></Route>
