@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import *as action from '../../redux/action/fetch-action.js';
+import *as action from 'action/fetch-action.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import DateTool from '../../utils/date-format.js';
+import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './list.less';
 

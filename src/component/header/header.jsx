@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import *as action from '../../redux/action/fetch-action.js';
+import *as action from 'action/fetch-action.js';
 import './header.less';
 
 class Header extends Component{

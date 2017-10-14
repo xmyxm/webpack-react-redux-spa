@@ -21,7 +21,7 @@ module.exports = {
 		rules:[
 			{
 	            test: /\.(es6|jsx|js)$/,
-	            loader: 'babel-loader',
+	            loader: 'babel-loader?cacheDirectory',//babel-loader缓存机制加参数 cacheDirectory
 	            exclude: /node_modules/,
 	            query: {
 	                presets: ['react', 'stage-0', 'es2015', 'stage-3'],
@@ -60,22 +60,14 @@ module.exports = {
 	        }
 		]
 	},
-	// postcss: function() {
-	//        //处理css兼容性代码，无须再写-webkit之类的浏览器前缀
-	//        return [
-	//            require('postcss-initial')({
-	//                reset: 'all' // reset only inherited rules
-	//            }),
-	//            require('autoprefixer')({
-	//                browsers: ['> 5%']
-	//            })
-	//        ];
-	//    },
 	plugins:[
 		new CleanPlugin(['dist', 'build']),//每次打包清理上次的打包文件
 		new webpack.optimize.CommonsChunkPlugin({
-				name: "common",
-				filename: "js/common.js",
+				// manifest文件用来引导所有模块的交互。manifest文件包含了加载和处理模块的逻辑。
+				// 当webpack编译器处理和映射应用代码时，它把模块的详细的信息都记录到了manifest文件中。当模块被打包并运输到浏览器上时，
+				// runtime就会根据manifest文件来处理和加载模块。利用manifest就知道从哪里去获取模块代码。
+				names: ["common","manifest"],
+				//filename: "js/[name]-[chunkhash:8].js",
 				minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
 			}),
 		new HtmlWebpackPlugin({
@@ -83,7 +75,7 @@ module.exports = {
 				,filename:'index.html'//可以使用hash命名
 				,title:'大众点评 推荐菜详情'
 				,inject:'body'//脚本包含到body 也可以写到head里面
-				,chunks:['index','common']//指定当前模板需要打入哪些js模块
+				,chunks:['index','common','manifest']//指定当前模板需要打入哪些js模块
 				,minify:{//启用代码代码压缩
 					removeComments:true,//移除注释
 					collapseWhitespace:true//移除空格
@@ -92,12 +84,20 @@ module.exports = {
 		new webpack.LoaderOptionsPlugin({
 			options: {
 				postcss: function () {
-					return [precss, autoprefixer];
+					return [precss, autoprefixer];//处理css兼容性代码，无须再写-webkit之类的浏览器前缀
 				}
 			}
 		})
 		//,new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
 	],
+    resolve:{
+        //别名设置,主要是为了配和webpack.ProvidePlugin设置全局插件;
+        alias: {
+             //绝对路径;
+             action: path.resolve(__dirname,'../src/redux/action'), 
+             utils: path.resolve(__dirname,'../src/utils')
+        }
+    },
 	devServer: {
 		contentBase: packageFilePath,
 		watchContentBase:true,//告诉服务器监视那些通过 devServer.contentBase 选项提供的文件。文件改动将触发整个页面重新加载。默认被禁用。

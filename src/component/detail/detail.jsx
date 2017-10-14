@@ -2,9 +2,9 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import share from 'social-share.js/src/js/social-share.js';
 import shareStyle from 'social-share.js/src/css/share.scss';
-import *as action from '../../redux/action/fetch-action.js';
+import *as action from 'action/fetch-action.js';
 import {connect} from 'react-redux';
-import DateTool from '../../utils/date-format.js';
+import DateTool from 'utils/date-format.js';
 import Cube from '../animation/cube.jsx';
 import './detail.less';
 
