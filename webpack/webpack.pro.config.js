@@ -9,8 +9,6 @@ config.plugins.push(
 	new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
 );
 // 线上打包启用代码压缩工具
-//config.plugins.push(new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}));
-
 config.plugins.push(new webpack.optimize.UglifyJsPlugin({
     // 最紧凑的输出
     beautify: false,
