@@ -28,7 +28,8 @@ config.plugins.push(new webpack.optimize.UglifyJsPlugin({
 }));
 
 //source-map的打包可以告诉我们错误源自源码的具体的位置,devtool来选定生成的source-map的详细程度
-config.devtool = 'source-map';//推荐production
+//config.devtool = 'source-map';//
+config.devtool = 'cheap-module-source-map';//生成一个没有列信息（column-mappings）的SourceMaps文件，同时 loader 的 sourcemap 也被简化为只包含对应行的。
 config.output.publicPath = 'http://qqweb.top/m/';//上线配置文件公共路径直接替换为线上域名
 config.output.chunkFilename = 'js/[name]-[chunkhash:8].js';//上线文件打上hash
 module.exports = config;
