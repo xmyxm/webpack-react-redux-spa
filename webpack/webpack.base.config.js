@@ -32,11 +32,11 @@ module.exports = {
 			{
 		        test: /\.less$/,
 		        //设置 options: { minimize: true }  会压缩样式
-		        use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'less-loader'],fallback: 'style-loader'})
+		        use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'less-loader',{loader: 'postcss-loader'}],fallback: 'style-loader'})
 		    },
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'sass-loader'],fallback: 'style-loader'})
+				use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'sass-loader',{loader: 'postcss-loader'}],fallback: 'style-loader'})
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -83,22 +83,22 @@ module.exports = {
 					collapseWhitespace:true//移除空格
 				}
 			}),
-		new webpack.LoaderOptionsPlugin({
-			// options: {
-			// 	postcss: function () {
-			// 		return [precss, autoprefixer];//处理css兼容性代码，无须再写-webkit之类的浏览器前缀
-			// 	}
-			// }
-			options: {
-		        postcss: [
-		          autoprefixer({
-		            browsers: [
-		              '>1%'
-		            ]
-		          })
-		        ]
-		    }
-		})
+		// new webpack.LoaderOptionsPlugin({
+		// 	// options: {
+		// 	// 	postcss: function () {
+		// 	// 		return [precss, autoprefixer];//处理css兼容性代码，无须再写-webkit之类的浏览器前缀
+		// 	// 	}
+		// 	// }
+		// 	options: {
+		//         postcss: [
+		//           autoprefixer({
+		//             browsers: [
+		//               '>1%'
+		//             ]
+		//           })
+		//         ]
+		//     }
+		// })
 		//,new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
 	],
     resolve:{
