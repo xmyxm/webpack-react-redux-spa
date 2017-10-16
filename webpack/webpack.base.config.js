@@ -32,11 +32,17 @@ module.exports = {
 			{
 		        test: /\.less$/,
 		        //设置 options: { minimize: true }  会压缩样式
-		        use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader'],fallback: 'style-loader'})
+		        use: ExtractTextPlugin.extract({
+		        	use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+		        	,fallback: 'style-loader'//style-loader加载器就是将CSS以内联方式插入到页面文档
+		        })
 		    },
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader'],fallback: 'style-loader'})
+				use: ExtractTextPlugin.extract({
+					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+					,fallback: 'style-loader'
+				})
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
