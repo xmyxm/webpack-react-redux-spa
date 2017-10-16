@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');//webpack插件，用于清除目录文件
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');//抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
 const webpack = require('webpack');
 const packageFilePath = path.join(__dirname, "../dist");
 const autoprefixer = require('autoprefixer');
@@ -32,11 +32,11 @@ module.exports = {
 			{
 		        test: /\.less$/,
 		        //设置 options: { minimize: true }  会压缩样式
-		        use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'less-loader',{loader: 'postcss-loader'}],fallback: 'style-loader'})
+		        use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader'],fallback: 'style-loader'})
 		    },
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'sass-loader',{loader: 'postcss-loader'}],fallback: 'style-loader'})
+				use: ExtractTextPlugin.extract({use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader'],fallback: 'style-loader'})
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
