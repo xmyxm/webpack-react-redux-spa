@@ -62,9 +62,9 @@ ReactDOM.render(
             <Route path="/home" component = {createComponent(Home)} ></Route>
             <Route path="/list" component = {createComponent(List)} ></Route>
             <Route path="/search" component = {createComponent(Search)}></Route>
-            <Route path="/detail/:id" render = {createComponent(Detail)} ></Route>
-            <Route path="/me" render = {createComponent(Me)} ></Route>
-            <Route path="/email" render = {createComponent(Email)} ></Route>
+            <Route path="/detail/:id" component = {createComponent(Detail)} ></Route>
+            <Route path="/me" component = {createComponent(Me)} ></Route>
+            <Route path="/email" component = {createComponent(Email)} ></Route>
         </div>
     </Router>
   </Provider>,
