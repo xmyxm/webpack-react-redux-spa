@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 //域名根路径无法指向当前web站点index.html页面时启用 hash 路由
 import createHistory from 'history/createHashHistory'
-import { HashRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link, Redirect} from 'react-router-dom';
 //import createHistory from 'history/createBrowserHistory';
-//import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+//import { BrowserRouter as Router, Route, Switch, Link, Redirect} from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import thunk from 'redux-thunk';
@@ -50,21 +50,26 @@ const createComponent = (component) =>() => (
         }
     </Bundle>
 )
-
+//启用排它性路由 Switch ，保证在 Switch 标签中只会命中一个组件
+//启用 Redirect 做到，当匹配不到 Switch 中的路由时重定向到默认页面：/m/index.html ， 处理路由 404 问题
+//因为react-router 是包容性路由，所以 exact 配合 Switch 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
         <div className = "blogbox">
             <Header/>
-            <Route exact path="/" component = {createComponent(Home)} ></Route>
-            <Route exact path="/index.html" component = {createComponent(Home)} ></Route>
-            <Route exact path="/m/index.html" component = {createComponent(Home)} ></Route>
-            <Route path="/home" component = {createComponent(Home)} ></Route>
-            <Route path="/list" component = {createComponent(List)} ></Route>
-            <Route path="/search" component = {createComponent(Search)}></Route>
-            <Route path="/detail/:id" component = {createComponent(Detail)} ></Route>
-            <Route path="/me" component = {createComponent(Me)} ></Route>
-            <Route path="/email" component = {createComponent(Email)} ></Route>
+            <Switch>
+                <Route path="/" exact component = {createComponent(Home)} ></Route>
+                <Route path="/index.html" exact component = {createComponent(Home)} ></Route>
+                <Route path="/m/index.html" exact component = {createComponent(Home)} ></Route>
+                <Route path="/home" component = {createComponent(Home)} ></Route>
+                <Route path="/list" component = {createComponent(List)} ></Route>
+                <Route path="/search" component = {createComponent(Search)}></Route>
+                <Route path="/detail/:id" component = {createComponent(Detail)} ></Route>
+                <Route path="/me" component = {createComponent(Me)} ></Route>
+                <Route path="/email" component = {createComponent(Email)} ></Route>
+                <Redirect to="/m/index.html" />
+            </Switch>
         </div>
     </Router>
   </Provider>,
