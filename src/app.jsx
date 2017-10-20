@@ -52,7 +52,7 @@ const createComponent = (component) =>() => (
 )
 //启用排它性路由 Switch ，保证在 Switch 标签中只会命中一个组件
 //启用 Redirect 做到，当匹配不到 Switch 中的路由时重定向到默认页面：/m/index.html ， 处理路由 404 问题
-//因为react-router 是包容性路由，所以 exact 配合 Switch 
+//因为react-router 是包容性路由，所以 exact 则要求路径与location.pathname必须完全匹配
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
