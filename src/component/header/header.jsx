@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
 import *as action from 'action/fetch-action.js';
 import './header.less';
 
-class Header extends Component{
+@connect(state => {return {fetchData:state.fetchData}},action)
+export default class Header extends Component{
 	constructor(props){
 		super(props);
 		this.state = {showmenu:false};
@@ -85,13 +86,6 @@ class Header extends Component{
 } 
 
 
-
-
-export default connect(
-	state=> {
-		return {fetchData:state.fetchData}
-	}
-	,action)(Header);
 
 
 
