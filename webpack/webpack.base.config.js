@@ -141,8 +141,10 @@ module.exports = {
 //image-webpack-loader 提供压缩图片的功能
 
 
-
-
+//css处理
+//style-loader自动将css代码放到生成的style标签中插入到head标签里
+//use:指需要什么样的loader去编译文件,这里由于源文件是.css所以选择css-loader
+//fallback:编译后用什么loader来提取css文件
 
 
 
