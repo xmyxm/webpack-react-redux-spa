@@ -119,12 +119,12 @@ module.exports = {
 		contentBase: packageFilePath,
 		watchContentBase:true,//告诉服务器监视那些通过 devServer.contentBase 选项提供的文件。文件改动将触发整个页面重新加载。默认被禁用。
 		compress: true,//一切服务都启用gzip 压缩：
-		inline: true,//应用程序启用内联模式,默认内联模式
+		inline: true,//应用程序启用内联模式,默认内联模式,当源文件改变时会自动刷新页面
 		hot: true,//启用 webpack 的模块热替换特性
 		host:'localhost',//指定使用一个 host。默认是 localhost。如果你希望服务器外部可访问，指定为ip
 		stats:{colors: true},// 用颜色标识
 		port: 9000,
-		historyApiFallback:{
+		historyApiFallback:{//在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为true，所有的跳转将指向index.html
 			index:'dist/index.html',
 			rewrites: [
 			  { from: /^\/admin/, to: 'dist/admin.html' }
@@ -145,9 +145,16 @@ module.exports = {
 //style-loader自动将css代码放到生成的style标签中插入到head标签里
 //use:指需要什么样的loader去编译文件,这里由于源文件是.css所以选择css-loader
 //fallback:编译后用什么loader来提取css文件
+//使用PostCSS来为CSS代码自动添加适应不同浏览器的CSS前缀, postcss-loader 需要结合加前缀工具 autoprefixer ,
+//在webpack配置文件中添加postcss-loader，在根目录新建postcss.config.js 指明 添加前缀的插件及其插件的配置
 
-
-
+//{
+//     loader: "css-loader",
+//     options: {
+//         modules: true
+//     }
+// }
+//CSS modules 的技术就意在把JS的模块化思想带入CSS中来,这样做只对当前组件有效，不必担心在不同的模块中使用相同的类名造成冲突
 
 
 
