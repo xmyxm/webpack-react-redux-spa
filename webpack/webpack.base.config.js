@@ -6,6 +6,12 @@ const webpack = require('webpack');
 const packageFilePath = path.join(__dirname, "../dist");
 const autoprefixer = require('autoprefixer');
 
+//判断当前运行环境是开发模式还是生产模式
+const nodeEnv = process.env.NODE_ENV || 'development';
+let isroduction = nodeEnv === 'production';
+isroduction = true
+console.log('----当前环境是否生产环境： ' + process.env.NODE_ENV);
+
 module.exports = {
 	entry:{
 		index:['./src/app.jsx']
@@ -32,11 +38,17 @@ module.exports = {
 			{
 		        test: /\.less$/,
 		        //设置 options: { minimize: true }  会压缩样式,style-loader加载器就是将CSS以内联方式插入到页面文档
-		        use: ['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+		        use: isroduction ? ExtractTextPlugin.extract({
+		        	use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+		        	,fallback: 'style-loader'}) : 
+		        ['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
 		    },
 			{
 				test: /\.scss$/,
-				use: ['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+				use: isroduction ? ExtractTextPlugin.extract({
+					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+					,fallback: 'style-loader'}) : 
+				['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -84,6 +96,7 @@ module.exports = {
 					collapseWhitespace:true//移除空格
 				}
 			}),
+
 		// new webpack.LoaderOptionsPlugin({
 		// 	// options: {
 		// 	// 	postcss: function () {

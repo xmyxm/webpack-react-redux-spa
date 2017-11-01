@@ -27,7 +27,15 @@ config.plugins.push(new webpack.optimize.UglifyJsPlugin({
       reduce_vars: true,
     }
 }));
-
+config.plugins.push(
+  //允许你创建一个在编译时可以配置的全局常量
+  new webpack.DefinePlugin({
+      'process.env': {
+          NODE_ENV: JSON.stringify('production')
+      },
+      'testabc':'12313'
+  })
+);
 //source-map的打包可以告诉我们错误源自源码的具体的位置,devtool来选定生成的source-map的详细程度
 //config.devtool = 'source-map';//
 config.devtool = 'cheap-module-source-map';//生成一个没有列信息（column-mappings）的SourceMaps文件，同时 loader 的 sourcemap 也被简化为只包含对应行的。
