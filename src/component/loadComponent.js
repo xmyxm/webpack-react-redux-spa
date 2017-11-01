@@ -1,41 +1,7 @@
 import React, {Component} from 'react';
 import Loading from './loading/loading.jsx';
 
-// export default class Bundle extends Component {
-//     constructor(props) {
-//         super(props)
-//     }
-
-//     componentWillMount() {
-//         this.load(this.props)
-//     }
-
-//     componentWillReceiveProps(nextProps) {
-//         if (nextProps.load !== this.props.load) {
-//             this.load(nextProps)
-//         }
-//     }
-
-//     load = (props) => {
-//         this.setState({
-//             mod:null
-//         })
-
-//         props.load((mod) => {
-//             this.setState({
-//                 mod:mod.default?mod.default:mod
-//             })
-//         })
-//     }
-
-//     render() {
-//         return this.props.children(this.state.mod)
-//     }
-// }
-
-
-
-const Bundle = loadComponent => (
+const loadComponent = component => (
     class AsyncComponent extends React.Component {
         state = {
             Component: null,
@@ -46,7 +12,7 @@ const Bundle = loadComponent => (
                 return;
             }
 
-            loadComponent()
+            component()
                 .then(module => module.default)
                 .then((Component) => {
                     this.setState({ Component });
@@ -68,4 +34,4 @@ const Bundle = loadComponent => (
     }
 );
 
-export default Bundle;
+export default loadComponent;
