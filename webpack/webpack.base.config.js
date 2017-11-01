@@ -22,7 +22,7 @@ module.exports = {
 		rules:[
 			{
 	            test: /\.(es6|jsx|js)$/,
-	            loader: 'babel-loader?cacheDirectory',//babel-loader缓存机制加参数 cacheDirectory
+	            loader: 'babel-loader?cacheDirectory',//babel-loader缓存机制加参数 cacheDirectory,webpack构建将尝试从缓存中读取，以避免在每次运行时，需要运行 Babel 重新编译过程可能带来的高昂的开销
 	            exclude: /node_modules/,
 	            query: {
 	                presets: ['react', 'stage-0', 'es2015', 'stage-3'],
@@ -31,18 +31,12 @@ module.exports = {
 			},
 			{
 		        test: /\.less$/,
-		        //设置 options: { minimize: true }  会压缩样式
-		        use: ExtractTextPlugin.extract({
-		        	use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
-		        	,fallback: 'style-loader'//style-loader加载器就是将CSS以内联方式插入到页面文档
-		        })
+		        //设置 options: { minimize: true }  会压缩样式,style-loader加载器就是将CSS以内联方式插入到页面文档
+		        use: ['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
 		    },
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({
-					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
-					,fallback: 'style-loader'
-				})
+				use: ['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -69,6 +63,7 @@ module.exports = {
 		]
 	},
 	plugins:[
+		new webpack.BannerPlugin('晨曦沐枫作品，欢迎学习交流'),//打包后代码版权申明插件
 		new CleanPlugin(['dist', 'build']),//每次打包清理上次的打包文件
 		new webpack.optimize.CommonsChunkPlugin({
 				// manifest文件用来引导所有模块的交互。manifest文件包含了加载和处理模块的逻辑。

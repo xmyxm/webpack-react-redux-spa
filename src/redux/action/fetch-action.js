@@ -38,8 +38,9 @@ export const fetchPosts = (path, postData) => {
     return dispatch => {
         dispatch(requestPosts(url,postData));
         return fetch(url,{
+            method: 'POST', 
             mode: 'cors',
-            "Content-Type": "application/json",
+            "Content-Type": 'text/plain',//"application/json",
         })
         .then(response => {
             if (response.ok) {

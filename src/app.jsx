@@ -14,16 +14,22 @@ import reducers from './redux/reducer';//拿到所有reducer来生成stare
 import baseStyle from './style/base.less';
 
 import Header from './component/header/header.jsx';
-import Me from 'bundle-loader?lazy&name=app-[name]!./component/me/me.jsx';
-import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';
-import List from 'bundle-loader?lazy&name=app-[name]!./component/list/list.jsx';
-import Detail from 'bundle-loader?lazy&name=app-[name]!./component/detail/detail.jsx';
-import Email from 'bundle-loader?lazy&name=app-[name]!./component/email/email.jsx';
-import Search from 'bundle-loader?lazy&name=app-[name]!./component/search/search.jsx';
+// import Me from 'bundle-loader?lazy&name=app-[name]!./component/me/me.jsx';
+// import Home from 'bundle-loader?lazy&name=app-[name]!./component/home/home.jsx';
+// import List from 'bundle-loader?lazy&name=app-[name]!./component/list/list.jsx';
+// import Detail from 'bundle-loader?lazy&name=app-[name]!./component/detail/detail.jsx';
+// import Email from 'bundle-loader?lazy&name=app-[name]!./component/email/email.jsx';
+// import Search from 'bundle-loader?lazy&name=app-[name]!./component/search/search.jsx';
+
 import Bundle from './component/bundle.jsx';
 import Loading from './component/loading/loading.jsx';
 
-
+const Me = Bundle(() => import("./component/me/me.jsx"));
+const Home = Bundle(() => import("./component/home/home.jsx"));
+const List = Bundle(() => import("./component/list/list.jsx"));
+const Detail = Bundle(() => import("./component/detail/detail.jsx"));
+const Email = Bundle(() => import("./component/email/email.jsx"));
+const Search = Bundle(() => import("./component/search/search.jsx"));
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const history = createHistory();
@@ -50,6 +56,7 @@ const createComponent = (component) =>() => (
         }
     </Bundle>
 )
+
 //启用排它性路由 Switch ，保证在 Switch 标签中只会命中一个组件
 //启用 Redirect 做到，当匹配不到 Switch 中的路由时重定向到默认页面：/m/index.html ， 处理路由 404 问题
 //因为react-router 是包容性路由，所以 exact 则要求路径与location.pathname必须完全匹配
@@ -59,15 +66,15 @@ ReactDOM.render(
         <div className = "blogbox">
             <Header/>
             <Switch>
-                <Route path="/" exact component = {createComponent(Home)} ></Route>
-                <Route path="/index.html" exact component = {createComponent(Home)} ></Route>
-                <Route path="/m/index.html" exact component = {createComponent(Home)} ></Route>
-                <Route path="/home" component = {createComponent(Home)} ></Route>
-                <Route path="/list" component = {createComponent(List)} ></Route>
-                <Route path="/search" component = {createComponent(Search)}></Route>
-                <Route path="/detail/:id" component = {createComponent(Detail)} ></Route>
-                <Route path="/me" component = {createComponent(Me)} ></Route>
-                <Route path="/email" component = {createComponent(Email)} ></Route>
+                <Route path="/" exact component = {Home} ></Route>
+                <Route path="/index.html" exact component = {Home} ></Route>
+                <Route path="/m/index.html" exact component = {Home} ></Route>
+                <Route path="/home" component = {Home} ></Route>
+                <Route path="/list" component = {List} ></Route>
+                <Route path="/search" component = {Search}></Route>
+                <Route path="/detail/:id" component = {Detail} ></Route>
+                <Route path="/me" component = {Me} ></Route>
+                <Route path="/email" component = {Email} ></Route>
                 <Redirect to="/m/index.html" />
             </Switch>
         </div>
@@ -78,5 +85,14 @@ ReactDOM.render(
 
 
 
-
+                // <Route path="/" exact component = {createComponent(Home)} ></Route>
+                // <Route path="/index.html" exact component = {createComponent(Home)} ></Route>
+                // <Route path="/m/index.html" exact component = {createComponent(Home)} ></Route>
+                // <Route path="/home" component = {createComponent(Home)} ></Route>
+                // <Route path="/list" component = {createComponent(List)} ></Route>
+                // <Route path="/search" component = {createComponent(Search)}></Route>
+                // <Route path="/detail/:id" component = {createComponent(Detail)} ></Route>
+                // <Route path="/me" component = {createComponent(Me)} ></Route>
+                // <Route path="/email" component = {createComponent(Email)} ></Route>
+                // <Redirect to="/m/index.html" />
 
