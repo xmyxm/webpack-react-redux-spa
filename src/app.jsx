@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 //域名根路径无法指向当前web站点index.html页面时启用 hash 路由
 import createHistory from 'history/createHashHistory'
-import { HashRouter as Router, Route, Switch, Link, Redirect} from 'react-router-dom';
 //import createHistory from 'history/createBrowserHistory';
-//import { BrowserRouter as Router, Route, Switch, Link, Redirect} from 'react-router-dom';
+import { Router, Route, Switch, Link, Redirect} from 'react-router-dom';
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import thunk from 'redux-thunk';
