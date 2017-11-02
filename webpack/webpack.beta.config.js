@@ -9,7 +9,7 @@ config.plugins.push(
 	new ExtractTextPlugin({ filename: 'css/[name].css', disable: true, allChunks: true })
 );
 config.plugins.push(
-	//允许你创建一个在编译时可以配置的全局常量
+	//允许你创建一个在编译时可以配置的全局常量，只能在被打包的文件中读取到这个全局变量
 	new webpack.DefinePlugin({
 	    'process.env': {
 	        NODE_ENV: '"development"'

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Loading from './loading/loading.jsx';
 
 const loadComponent = component => (

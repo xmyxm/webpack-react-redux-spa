@@ -4,13 +4,6 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');//抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
 const webpack = require('webpack');
 const packageFilePath = path.join(__dirname, "../dist");
-const autoprefixer = require('autoprefixer');
-
-//判断当前运行环境是开发模式还是生产模式
-const nodeEnv = process.env.NODE_ENV || 'development';
-let isroduction = nodeEnv === 'production';
-isroduction = true
-console.log('----当前环境是否生产环境： ' + process.env.NODE_ENV);
 
 module.exports = {
 	entry:{
@@ -38,17 +31,17 @@ module.exports = {
 			{
 		        test: /\.less$/,
 		        //设置 options: { minimize: true }  会压缩样式,style-loader加载器就是将CSS以内联方式插入到页面文档
-		        use: isroduction ? ExtractTextPlugin.extract({
+		        use: ExtractTextPlugin.extract({
 		        	use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
-		        	,fallback: 'style-loader'}) : 
-		        ['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+		        	,fallback: 'style-loader'})
+		        //['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
 		    },
 			{
 				test: /\.scss$/,
-				use: isroduction ? ExtractTextPlugin.extract({
+				use: ExtractTextPlugin.extract({
 					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
-					,fallback: 'style-loader'}) : 
-				['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+					,fallback: 'style-loader'}) 
+				//['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
 			},
 	        {
                 test: /\.(png|jpg|jpeg|gif)$/,
@@ -95,25 +88,7 @@ module.exports = {
 					removeComments:true,//移除注释
 					collapseWhitespace:true//移除空格
 				}
-			}),
-
-		// new webpack.LoaderOptionsPlugin({
-		// 	// options: {
-		// 	// 	postcss: function () {
-		// 	// 		return [precss, autoprefixer];//处理css兼容性代码，无须再写-webkit之类的浏览器前缀
-		// 	// 	}
-		// 	// }
-		// 	options: {
-		//         postcss: [
-		//           autoprefixer({
-		//             browsers: [
-		//               '>1%'
-		//             ]
-		//           })
-		//         ]
-		//     }
-		// })
-		//,new ExtractTextPlugin({ filename: 'css/[name].css', disable: false, allChunks: true })
+			})
 	],
     resolve:{
         //别名设置,主要是为了配和webpack.ProvidePlugin设置全局插件;
