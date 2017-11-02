@@ -1,12 +1,13 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
+import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import *as action from 'action/fetch-action.js';
 import './header.less';
 
 @connect(state => {return {fetchData:state.fetchData}},action)
-export default class Header extends Component{
+class Header extends Component{
 	constructor(props){
 		super(props);
 		this.state = {showmenu:false};
@@ -35,17 +36,23 @@ export default class Header extends Component{
 	}
 
 	showhome(e){
-		if(e.target.className == "searchicon" && !this.state.showmenu)return;
+		//if(e.target.className == "searchicon" && !this.state.showmenu)return;
 		this.setState({showmenu:!this.state.showmenu});
+	}
+
+	gotoSearch(){
+		if(this.props.history.location.pathname != '/search'){
+			this.props.history.push('/search');
+		}
 	}
 
 	render(){
 		return (
-			<div className = "header" onClick = {this.showhome.bind(this)}>
-				<header className = "topbtn">
-					<div className = "menuicon" ></div>
-					<div className = "blogicon" ></div>
-					<Link to="/search" className = "searchicon" ></Link>
+			<div className = "header" >
+				<header className = "topbtn" >
+					<div className = "menuicon" onClick = {this.showhome.bind(this)} ></div>
+					<div className = "blogicon" onClick = {this.showhome.bind(this)}  ></div>
+					<div className = "searchicon" onClick = {this.gotoSearch.bind(this)}  ></div>
 				</header>
 				<div className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
@@ -85,11 +92,7 @@ export default class Header extends Component{
 	}
 } 
 
-
-
-
-
-
+export default withRouter(Header)
 
 
 
