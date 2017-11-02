@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Loading from './loading/loading.jsx';
 
 const loadComponent = component => (
-    class AsyncComponent extends React.Component {
+    class GetComponent extends React.Component {
         state = {
             Component: null,
         }
@@ -18,7 +18,7 @@ const loadComponent = component => (
                     this.setState({ Component });
                 })
                 .catch((err) => {
-                    console.error(`Cannot load component in <AsyncComponent />`);
+                    console.error(`Cannot load component in <GetComponent />`);
                     throw err;
                 });
         }
