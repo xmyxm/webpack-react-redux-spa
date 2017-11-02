@@ -16,12 +16,12 @@ import baseStyle from './style/base.less';
 import Header from './component/header/header.jsx';
 import loadComponent from './component/loadComponent.js';
 
-const Me = loadComponent(() => import("./component/me/me.jsx"));
-const Home = loadComponent(() => import("./component/home/home.jsx"));
-const List = loadComponent(() => import("./component/list/list.jsx"));
-const Detail = loadComponent(() => import("./component/detail/detail.jsx"));
-const Email = loadComponent(() => import("./component/email/email.jsx"));
-const Search = loadComponent(() => import("./component/search/search.jsx"));
+const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */"./component/me/me.jsx"));
+const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */"./component/home/home.jsx"));
+const List = loadComponent(() => import(/* webpackChunkName: "app-list" */"./component/list/list.jsx"));
+const Detail = loadComponent(() => import(/* webpackChunkName: "app-detail" */"./component/detail/detail.jsx"));
+const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */"./component/email/email.jsx"));
+const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */"./component/search/search.jsx"));
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const history = createHistory();
