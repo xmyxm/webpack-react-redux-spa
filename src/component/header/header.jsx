@@ -54,7 +54,7 @@ class Header extends Component{
 					<div className = "blogicon" onClick = {this.showhome.bind(this)}  ></div>
 					<div className = "searchicon" onClick = {this.gotoSearch.bind(this)}  ></div>
 				</header>
-				<div className = {this.state.showmenu ? "classify show" : "classify"}>
+				<div onClick = {this.showhome.bind(this)} className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
 							<div className = "usericon">
 								{
