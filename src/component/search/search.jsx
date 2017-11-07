@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import *as action from 'action/fetch-action.js';
+import {fetchPosts} from './search_action.js';
 import {connect} from 'react-redux';
 import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './search.less';
 
-@connect(state => {return {fetchData:state.fetchData}},action)
+@connect(state => {return {fetchData:state.SearchData}},{fetchPosts})
 export default class Search extends Component{
 	constructor(props){
 		super(props);

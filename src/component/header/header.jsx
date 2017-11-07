@@ -3,10 +3,10 @@ import React,{Component} from 'react';
 import {withRouter} from "react-router-dom";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import *as action from 'action/fetch-action.js';
+import {fetchPosts} from './header_action.js';
 import './header.less';
 
-@connect(state => {return {fetchData:state.fetchData}},action)
+@connect(state => {return {fetchData:state.HeaderData}},{fetchPosts})
 class Header extends Component{
 	constructor(props){
 		super(props);
@@ -35,14 +35,16 @@ class Header extends Component{
 		this.props.fetchPosts('http://qqweb.top/API/BlogApi/AdminUser');
 	}
 
-	showhome(e){
-		//if(e.target.className == "searchicon" && !this.state.showmenu)return;
+	showhome(){
 		this.setState({showmenu:!this.state.showmenu});
 	}
 
 	gotoSearch(){
 		if(this.props.history.location.pathname != '/search'){
 			this.props.history.push('/search');
+		}
+		if(this.state.showmenu){
+			this.showhome();
 		}
 	}
 

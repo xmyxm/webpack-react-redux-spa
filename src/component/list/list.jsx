@@ -1,14 +1,14 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import *as action from 'action/fetch-action.js';
+import {fetchPosts} from './list_action.js';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './list.less';
 
-@connect(state => {return {fetchData:state.fetchData}},action)
+@connect(state => {return {fetchData:state.ListData}},{fetchPosts})
 export default class List extends Component{
 	constructor(props){
 		super(props);

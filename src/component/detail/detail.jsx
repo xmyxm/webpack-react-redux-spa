@@ -2,13 +2,13 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import share from 'social-share.js/src/js/social-share.js';
 import shareStyle from 'social-share.js/src/css/share.scss';
-import *as action from 'action/fetch-action.js';
+import {fetchPosts} from './detail_action.js';
 import {connect} from 'react-redux';
 import DateTool from 'utils/date-format.js';
 import Cube from '../animation/cube.jsx';
 import './detail.less';
 
-@connect(state => {return {fetchData:state.fetchData}},action)
+@connect(state => {return {fetchData:state.DetailData}},{fetchPosts})
 export default class Detail extends Component{
 	constructor(props){
 		super(props);
