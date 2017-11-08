@@ -40,6 +40,7 @@ class Header extends Component{
 	}
 
 	gotoSearch(){
+
 		if(this.props.history.location.pathname != '/search'){
 			this.props.history.push('/search');
 		}

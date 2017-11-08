@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
-import share from 'social-share.js/src/js/social-share.js';
-import shareStyle from 'social-share.js/src/css/share.scss';
+import {withRouter} from "react-router-dom";
+//import share from 'social-share.js/src/js/social-share.js';
+//import shareStyle from 'social-share.js/src/css/share.scss';
 import {fetchPosts} from './detail_action.js';
 import {connect} from 'react-redux';
 import DateTool from 'utils/date-format.js';
@@ -9,7 +10,7 @@ import Cube from '../animation/cube.jsx';
 import './detail.less';
 
 @connect(state => {return {fetchData:state.DetailData}},{fetchPosts})
-export default class Detail extends Component{
+class Detail extends Component{
 	constructor(props){
 		super(props);
 		this.dataloading = true;
@@ -35,8 +36,9 @@ export default class Detail extends Component{
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
 		//console.log('输出分享组件暴露api : ' + typeof window.socialShare);
-		let id = (window.location.hash || window.location.pathname).replace(/\D/g,'');
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:id});
+		//let id = (window.location.hash || window.location.pathname).replace(/\D/g,'');
+		let params = this.props.match.params;
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:params.id});
 	}
 
 	createMarkup(html) {
@@ -78,7 +80,7 @@ export default class Detail extends Component{
 	}
 } 
 
-
+export default withRouter(Detail)
 
 
 
