@@ -16,6 +16,7 @@ module.exports = {
 		,filename:'js/[name].js'
 		,chunkFilename: 'js/[name]-[id].js'
 		,publicPath:'/'//'http://qqweb.top/m/' //配置文件公共路径，上线的时候直接替换为线上域名
+		,crossOriginLoading: 'anonymous' //script 标签加上跨域错误捕获权限
 	},
 	module:{
 		rules:[
