@@ -82,7 +82,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 				template:'./src/html/index.html'
 				,filename:'index.html'//可以使用hash命名
-				,title:'大众点评 推荐菜详情'
+				,title:'前端栈'
 				,inject:'body'//脚本包含到body 也可以写到head里面
 				,chunks:['index','common','manifest']//指定当前模板需要打入哪些js模块
 				,minify:{//启用代码代码压缩
