@@ -15,6 +15,11 @@ import baseStyle from './style/base.less';
 import Header from './component/header/header.jsx';
 import loadComponent from './component/loadComponent.js';
 
+//代码分割方案
+//我抛弃了 webpack 2.x 的ensure方案 采用了webpack3.x 的 import方案，其实ensure 和 import 就是告诉 webpack 目标文件独立打包
+// require.ensure([], function() {
+//     var const = require('./component/me/me.jsx') //baidumap.js放在我们当前目录下
+// })
 const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */"./component/me/me.jsx"));
 const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */"./component/home/home.jsx"));
 const List = loadComponent(() => import(/* webpackChunkName: "app-list" */"./component/list/list.jsx"));
