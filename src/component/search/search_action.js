@@ -34,9 +34,17 @@ export const rejectPosts = (path, error) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
-    let url = path + '?' + paramToStr(postData);
-    return dispatch => {
-        dispatch(requestPosts(url,postData));
+    
+    return (dispatch, getState) => {
+        if(!postData){
+            let searchData = getState().Search.searchData
+            if(searchData){
+                postData = getState().Search.param || {}
+                postData.PageIndex = ++postData.PageIndex
+            }
+        }
+        let url = path + '?' + paramToStr(postData)
+        dispatch(requestPosts(url,postData))
         return fetch(url,{
             method: 'POST', 
             mode: 'cors',

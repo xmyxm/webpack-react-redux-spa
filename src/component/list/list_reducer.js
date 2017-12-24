@@ -1,19 +1,45 @@
 import {LIST_REQUEST_POSTS, LIST_RESOLVE_POSTS, LIST_REJECT_POSTS} from './list_action.js'
 
-const defaultlState = {'Json': {},'istrue':false, 'isFetching': false};
+const defaultlState = {listData: null, isFetching: false, dataMore: true}
 //首次渲染时获取数据
-const ListData = (state = defaultlState , action = {}) => {
+const List = (state = defaultlState , action = {}) => {
+    let _data,dataMore
     switch(action.type){
         case LIST_REQUEST_POSTS:
-            return {'Json':{},'isFetching':true,'param':action.param};
-        case LIST_RESOLVE_POSTS://debugger;
-            return Object.assign({}, state, {'Json':action.json,'istrue':true,'isFetching':false});//请求成功,返回一个新的state
+            return {
+                ...state
+                ,isFetching : true
+            }
+        case LIST_RESOLVE_POSTS:
+            _data = action.json
+            if(_data.PageIndex * _data.PageSize >= _data.TotalCount){
+                dataMore = false
+            }else{
+                dataMore = true
+            }
+            if(state.listData && state.listData.BlogWorkList && state.listData.BlogWorkList.length){
+                _data.BlogWorkList = _data.BlogWorkList.concat(state.listData.BlogWorkList)
+            }
+            return {
+                ...state,
+                listData: _data,
+                isFetching: false,
+                dataMore: dataMore
+            }
+
         case LIST_REJECT_POSTS:
-            return Object.assign({}, state, {'Json': {},'istrue':false,'isFetching':false});//请求失败，返回一个新的state
+            return {
+                ...state,
+                isFetching:false
+            }
+
         default:
-            return state;
+            return state
     }
 }
 
-export default ListData;
+export default List
+
+
+
 

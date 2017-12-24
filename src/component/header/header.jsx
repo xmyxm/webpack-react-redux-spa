@@ -1,12 +1,13 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
-import {withRouter} from "react-router-dom";
+import {withRouter, Link} from "react-router-dom";
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import {fetchPosts} from './header_action.js';
 import './header.less';
 
-@connect(state => {return {fetchData:state.HeaderData}},{fetchPosts})
+@connect(state => {return {
+	headerData:state.Header.headerData
+}},{fetchPosts})
 class Header extends Component{
 	constructor(props){
 		super(props);
@@ -14,19 +15,6 @@ class Header extends Component{
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		if(nextProps.fetchData){
-    		if(nextProps.fetchData.isFetching) {
-    			this.dataloading = true;
-    			return false;
-    		}
-    		this.dataloading = false;
-    		if(nextProps.fetchData.Json){
-	    		let data = nextProps.fetchData.Json;
-				if(data && data.ID > 0){
-					this.data = data;
-				}
-    		}
-    	}
     	return true;
 	}
 
@@ -50,6 +38,10 @@ class Header extends Component{
 	}
 
 	render(){
+		const {headerData} = this.props
+		if(!headerData){
+			return null
+		}
 		return (
 			<div className = "header" >
 				<header className = "topbtn" >

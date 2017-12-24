@@ -1,89 +1,53 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import {fetchPosts} from './search_action.js';
 import {connect} from 'react-redux';
+import {fetchPosts} from './search_action.js';
 import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './search.less';
 
-@connect(state => {return {fetchData:state.SearchData}},{fetchPosts})
+@connect(state => {return {
+	searchData:state.Search.searchData,
+	isFetching: state.Search.isFetching,
+	dataMore: state.Search.dataMore
+}},{fetchPosts})
 export default class Search extends Component{
 	constructor(props){
-		super(props);
-		this.page = 1;
-		this.imgLoading = false;
-		this.dataloading = false;
-		this.totalCount = 0;
-		this.bloglist = [];
+		super(props)
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
-		if(nextProps.fetchData){
-    		if(nextProps.fetchData.isFetching) {
-    			this.dataloading = true;
-    			return false;
-    		}
-    		this.dataloading = false;
-    		if(nextProps.fetchData.Json){
-				//debugger
-				let data = nextProps.fetchData.Json;
-				if(data){
-					if(data.PageIndex == 1){
-						this.bloglist.length = 0 ;
-					}
-					if(data.TotalCount){
-						this.totalCount = data.TotalCount;
-						if(data.PageIndex * data.PageSize >= data.TotalCount){
-							this.imgLoading = false;
-						}else{
-							++this.page;
-							this.imgLoading = true;
-						}
-						if(data.BlogWorkList && data.BlogWorkList.length){
-							this.bloglist = this.bloglist.concat(data.BlogWorkList);
-							return true;
-						}
-					}else{
-						this.imgLoading = false;
-					}
-				}
-				return true;
-			}
-    	}
-    	return false;
+    	return true
 	}
 
 	componentWillUnmount() {
-		window.onscroll = null;
+		window.onscroll = null
 	}
 
     componentDidMount(){
     	let _self = this;
 		window.onscroll = (e) => { 
-
-            if (!_self.imgLoading || _self.dataloading) return;
+            if (!_self.dataMore || _self.isFetching) return;
             let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 150;
             if (alltop > document.body.scrollHeight) {
                 _self.pullBlogData();
             }
-
         }
-        _self.pullBlogData();
+        _self.pullBlogData({page: 1, key: ''})
     }
 
-	pullBlogData(){
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query',{PageIndex:this.page,key:this.searchValue || ''});
+	pullBlogData(param){
+		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query', param)
 	}
 
 	Query(){
-		this.page = 1;
-		this.searchValue = this.refs.keyname.value;
-		this.pullBlogData();
+		this.searchValue = this.refs.keyname.value
+		this.pullBlogData({page: 1, key: this.refs.keyname.value})
 	}
 
 	userChange(e){
-		if(this.refs.keyname.value != this.searchValue)this.Query();
+		if(this.refs.keyname.value != this.searchValue)this.Query()
 	}
 
 	userKeyup(e){
@@ -91,6 +55,8 @@ export default class Search extends Component{
 	}
 
 	render(){
+		const {searchData, isFetching, dataMore} = this.props
+
 		return (
 			<div className = "searchbox">
 				<div className = "head" >
@@ -105,8 +71,9 @@ export default class Search extends Component{
 				<div className = "listbox">
 					<ul className = "list" >
 					{
-						(this.bloglist.length > 0) && this.bloglist.map(item => {
-							return 	<li key = {item.ID} className = "item" >
+						(searchData && searchData.BlogWorkList && searchData.BlogWorkList.length > 0) && 
+							searchData.BlogWorkList.map(item => {
+								return 	<li key = {item.ID} className = "item" >
 										<Link to={'/detail/' + item.ID} className = "clickarea">
 											<div className = "contenthead">
 												<div className = "title">{item.Title}</div>
@@ -123,7 +90,7 @@ export default class Search extends Component{
 					}	
 					</ul>
 					{
-						this.imgLoading ?  <Eat/> : <div className = "bottominfo" >--- 我是有底线的 ---</div>
+						dataMore ?  <Eat/> : <div className = "bottominfo" >--- 我是有底线的 ---</div>
 					}
 				</div>
 			</div>

@@ -1,42 +1,27 @@
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
 import React,{Component} from 'react';
 import {withRouter} from "react-router-dom";
-//import share from 'social-share.js/src/js/social-share.js';
-//import shareStyle from 'social-share.js/src/css/share.scss';
 import {fetchPosts} from './detail_action.js';
-import {connect} from 'react-redux';
 import DateTool from 'utils/date-format.js';
 import Cube from '../animation/cube.jsx';
 import './detail.less';
 
-@connect(state => {return {fetchData:state.DetailData}},{fetchPosts})
+@connect(state => {return {
+	detailData:state.Detail.detailData
+	,isFetching: state.Detail.isFetching
+}},{fetchPosts})
 class Detail extends Component{
 	constructor(props){
 		super(props);
-		this.dataloading = true;
 	}
 	
 	shouldComponentUpdate(nextProps, nextState){
-		if(nextProps.fetchData){
-    		if(nextProps.fetchData.isFetching) {
-    			this.dataloading = true;
-    			return false;
-    		}
-    		this.dataloading = false;
-    		if(nextProps.fetchData.Json){
-	    		let data = nextProps.fetchData.Json;
-				if(data && data.BlogID > 0){
-					this.data = data;
-				}
-    		}
-    	}
-    	return true;
+		return true
 	}
 
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
-		//console.log('输出分享组件暴露api : ' + typeof window.socialShare);
-		//let id = (window.location.hash || window.location.pathname).replace(/\D/g,'');
 		let params = this.props.match.params;
 		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Detail',{id:params.id});
 	}
@@ -48,32 +33,33 @@ class Detail extends Component{
 	}
 
 	render(){
+		const {detailData,isFetching} = this.props
 		
 		return (
 			 <div className = "detailbox">
 				{
-					this.data &&
+					detailData &&
 					<div className = "contentarea" >
 						<div className = "title">
-							<div className = "text">{this.data.DetailContent.Title}</div>
-							<div className = "option">写于 {DateTool.ChangeDateFormat(this.data.DetailContent.CreateTime)} | 分类于 {this.data.DetailContent.SortName}</div>
+							<div className = "text">{detailData.DetailContent.Title}</div>
+							<div className = "option">写于 {DateTool.ChangeDateFormat(detailData.DetailContent.CreateTime)} | 分类于 {detailData.DetailContent.SortName}</div>
 				 		</div>
-					 	<div className = "content" dangerouslySetInnerHTML={this.createMarkup(this.data.DetailContent.Content)}></div>
+					 	<div className = "content" dangerouslySetInnerHTML={this.createMarkup(detailData.DetailContent.Content)}></div>
 					 	<div className = "tag">
 					 		<span className = "mr6">我的标签: </span>
 						 	{
-						 		this.data.DetailContent.Tag.replace(/^;+|;+$/g,"").split(";").map((item,index) => {
+						 		detailData.DetailContent.Tag.replace(/^;+|;+$/g,"").split(";").map((item,index) => {
 						 			return <span key = {index} className = "text">{item}</span>
 						 		})
 						 	}
 					 	</div>
 					 	<div className = "uptime">
-					 		修改于 {DateTool.Format(this.data.DetailContent.UpdateTime,"yyyy年MM月dd日 hh:mm:ss")}
+					 		修改于 {DateTool.Format(detailData.DetailContent.UpdateTime,"yyyy年MM月dd日 hh:mm:ss")}
 					 	</div>
 					</div>
 				}
 				{
-					!this.data && <Cube />
+					isFetching && <Cube />
 				}
 			 </div>
 	    )

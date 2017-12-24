@@ -34,8 +34,12 @@ export const rejectPosts = (path, error) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
-    let url = path + '?' + paramToStr(postData);
-    return dispatch => {
+    return (dispatch,getState) => {
+        let listData = getState().List.listData
+        if(listData){
+            postData.PageIndex = ++listData.PageIndex
+        }
+        let url = path + '?' + paramToStr(postData);
         dispatch(requestPosts(url,postData));
         return fetch(url,{
             method: 'POST', 
