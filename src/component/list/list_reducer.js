@@ -17,7 +17,7 @@ const List = (state = defaultlState , action = {}) => {
             }else{
                 dataMore = true
             }
-            if(state.listData && state.listData.BlogWorkList && state.listData.BlogWorkList.length){
+            if(state.listData && state.listData.BlogWorkList && state.listData.BlogWorkList.length && _data.BlogWorkList){
                 _data.BlogWorkList = _data.BlogWorkList.concat(state.listData.BlogWorkList)
             }
             return {
