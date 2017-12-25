@@ -15,6 +15,7 @@ import './search.less';
 export default class Search extends Component{
 	constructor(props){
 		super(props)
+		this.dataUrl = 'http://qqweb.top/API/BlogApi/Query'
 	}
 
 	shouldComponentUpdate(nextProps, nextState){
@@ -28,22 +29,23 @@ export default class Search extends Component{
     componentDidMount(){
     	let _self = this;
 		window.onscroll = (e) => { 
-            if (!_self.dataMore || _self.isFetching) return;
+            if (!_self.props.dataMore || _self.props.isFetching) return;
             let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 150;
             if (alltop > document.body.scrollHeight) {
-                _self.pullBlogData();
+            	console.log(Date.now())
+                _self.pullBlogData({PageIndex : ++_self.props.searchData.PageIndex,key : this.refs.keyname.value});
             }
         }
-        _self.pullBlogData({page: 1, key: ''})
+        _self.pullBlogData({PageIndex: 1, key: ''})
     }
 
 	pullBlogData(param){
-		this.props.fetchPosts('http://qqweb.top/API/BlogApi/Query', param)
+		this.props.fetchPosts(this.dataUrl, param)
 	}
 
 	Query(){
 		this.searchValue = this.refs.keyname.value
-		this.pullBlogData({page: 1, key: this.refs.keyname.value})
+		this.pullBlogData({PageIndex: 1, key: this.refs.keyname.value})
 	}
 
 	userChange(e){
