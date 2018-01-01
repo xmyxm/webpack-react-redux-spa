@@ -10,6 +10,7 @@ import './search.less';
 @connect(state => {return {
 	searchData:state.Search.searchData,
 	isFetching: state.Search.isFetching,
+	param: state.Search.param,
 	dataMore: state.Search.dataMore
 }},{fetchPosts})
 export default class Search extends Component{
@@ -57,14 +58,20 @@ export default class Search extends Component{
 	}
 
 	render(){
-		const {searchData, isFetching, dataMore} = this.props
+		const {searchData, isFetching, dataMore, param} = this.props
 
 		return (
 			<div className = "searchbox">
 				<div className = "head" >
 					<div className = "searchtext" >搜索更懂你！</div>
 					<div className="searchinfo">
-						<input type = "text" name="keyname" onKeyUp = {this.userKeyup.bind(this)} onChange = {this.userChange.bind(this)} className="keytext" ref = "keyname" />
+						<input type = "text" 
+						name = "key" 
+						onKeyUp = {this.userKeyup.bind(this)} 
+						onChange = {this.userChange.bind(this)} 
+						value = {param && param.key ? param.key : ''}
+						className ="keytext" 
+						ref = "keyname" />
 						<i className = "so" ></i>
 						<i className = "del" ></i>
 						<div className = "searchbtn" onClick = {this.Query.bind(this)} >搜索</div>
