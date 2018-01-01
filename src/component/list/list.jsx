@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
-import {fetchPosts} from './list_action.js';
+import {fetchPosts, saveScrollTop} from './list_action.js';
 import {connect} from 'react-redux';
 import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
@@ -10,28 +10,31 @@ import './list.less';
 @connect(state => {return {
 	listData: state.List.listData,
 	isFetching: state.List.isFetching,
+	top: state.List.top,
 	dataMore: state.List.dataMore
-}},{fetchPosts})
+}},{fetchPosts, saveScrollTop})
 export default class List extends Component{
 	constructor(props){
 		super(props)
 	}
 
-	// shouldComponentUpdate(nextProps, nextState){
- //    	return true
-	// }
+	shouldComponentUpdate(nextProps, nextState){
+    	return true
+	}
 
 	componentWillUnmount() {
 		window.onscroll = null;
+		var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset
+		this.props.saveScrollTop(top)
 	}
 
     componentDidMount(){
     	let _url = 'http://qqweb.top/API/BlogApi/WorkList'
     	let _self = this
+		if(_self.props.top)window.scrollTo(0, _self.props.top)
 
 		window.onscroll = (e) => { 
             if (!_self.props.dataMore || _self.props.isFetching) return
-            console.log(0)
             //一个元素的 scrollTop 值是这个元素的顶部到它的最顶部可见内容（的顶部）的距离的度量。
             //当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
 

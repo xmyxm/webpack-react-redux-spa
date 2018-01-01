@@ -2,17 +2,18 @@ import ReactDOM from 'react-dom';
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchPosts} from './search_action.js';
+import {fetchPosts, saveScrollTop} from './search_action.js';
 import DateTool from 'utils/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './search.less';
 
 @connect(state => {return {
 	searchData:state.Search.searchData,
+	top: state.Search.top,
 	isFetching: state.Search.isFetching,
 	param: state.Search.param,
 	dataMore: state.Search.dataMore
-}},{fetchPosts})
+}},{fetchPosts, saveScrollTop})
 export default class Search extends Component{
 	constructor(props){
 		super(props)
@@ -25,10 +26,14 @@ export default class Search extends Component{
 
 	componentWillUnmount() {
 		window.onscroll = null
+		var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset
+		this.props.saveScrollTop(top)
 	}
 
     componentDidMount(){
     	let _self = this
+    	if(_self.props.top)window.scrollTo(0, _self.props.top)
+
 		window.onscroll = (e) => { 
             if (!_self.props.dataMore || _self.props.isFetching) return
             let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 100

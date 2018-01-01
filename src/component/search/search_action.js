@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch';
 export const SEARCH_REQUEST_POSTS = 'SEARCH_REQUEST_POSTS';//发送请求
 export const SEARCH_REJECT_POSTS = 'SEARCH_REJECT_POSTS';//失败
 export const SEARCH_RESOLVE_POSTS = 'SEARCH_RESOLVE_POSTS';//成功
+export const LIST_SAVE_SCROLLTOP = 'LIST_SAVE_SCROLLTOP';//记录滚动位置
 
 //开始获取数据
 export const requestPosts = (path,param) => {
@@ -29,6 +30,14 @@ export const rejectPosts = (path, error) => {
         type: SEARCH_REJECT_POSTS,
         path ,
         error
+    }
+}
+
+//记录滚动位置
+export const saveScrollTop = (height) => {
+  return {
+        type: LIST_SAVE_SCROLLTOP,
+        top : height
     }
 }
 
