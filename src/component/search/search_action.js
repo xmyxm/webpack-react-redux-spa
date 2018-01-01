@@ -34,6 +34,7 @@ export const rejectPosts = (path, error) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
+    postData.PageSize = 10
     let url = path + '?' + paramToStr(postData)
     return (dispatch, getState) => {
         dispatch(requestPosts(url,postData))

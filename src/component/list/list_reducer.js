@@ -6,11 +6,13 @@ const List = (state = defaultlState , action = {}) => {
     let _data,dataMore
     switch(action.type){
         case LIST_REQUEST_POSTS:
+            console.log(3)
             return {
                 ...state
                 ,isFetching : true
             }
         case LIST_RESOLVE_POSTS:
+            console.log(4)
             _data = action.json
             if(_data.PageIndex * _data.PageSize >= _data.TotalCount){
                 dataMore = false

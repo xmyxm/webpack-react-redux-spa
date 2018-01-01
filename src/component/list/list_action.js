@@ -35,12 +35,15 @@ export const rejectPosts = (path, error) => {
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
     return (dispatch,getState) => {
-        let listData = getState().List.listData
-        if(listData){
-            postData.PageIndex = ++listData.PageIndex
+        let listState = getState().List
+        if(listState.isFetching) {
+            console.log('多次return')
+            return
         }
-        let url = path + '?' + paramToStr(postData);
-        dispatch(requestPosts(url,postData));
+        postData.PageSize = 10
+        let url = path + '?' + paramToStr(postData)
+        console.log(2)
+        dispatch(requestPosts(url,postData))
         return fetch(url,{
             method: 'POST', 
             mode: 'cors',

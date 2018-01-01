@@ -17,9 +17,9 @@ export default class List extends Component{
 		super(props)
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
-    	return true
-	}
+	// shouldComponentUpdate(nextProps, nextState){
+ //    	return true
+	// }
 
 	componentWillUnmount() {
 		window.onscroll = null;
@@ -28,15 +28,28 @@ export default class List extends Component{
     componentDidMount(){
     	let _url = 'http://qqweb.top/API/BlogApi/WorkList'
     	let _self = this
+
 		window.onscroll = (e) => { 
             if (!_self.props.dataMore || _self.props.isFetching) return
-            	let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 150
-            console.log(alltop + ' : ' + document.body.scrollHeight)
-            if (alltop > document.body.scrollHeight) {
-                _self.props.fetchPosts(_url,{PageSize:10})
-            }
+            console.log(0)
+            //一个元素的 scrollTop 值是这个元素的顶部到它的最顶部可见内容（的顶部）的距离的度量。
+            //当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
+
+            //innerHeight 浏览器窗口的视口（viewport）高度（以像素为单位），如果存在水平滚动条，则包括它。
+            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 100
+            //scrollHeight 这个只读属性是一个元素内容高度的度量，包括由于溢出导致的视图中不可见内容。
+            //没有垂直滚动条的情况下，scrollHeight值与元素视图填充所有内容所需要的最小值clientHeight相同。
+            //包括元素的padding，但不包括元素的border和margin.
+	        if (alltop > document.body.scrollHeight) {
+	        	//console.log('滚动高度加视口高度:'+ alltop + ' 内容区域的实际高度:' + document.body.scrollHeight + '  dataMore:' + _self.props.dataMore + '  isFetching:' + _self.props.isFetching)	
+	            let PageIndex = _self.props.listData && _self.props.listData.PageIndex ? ++ _self.props.listData.PageIndex : 1
+	            if(PageIndex > 2) return
+	            console.log(1)
+	            _self.props.fetchPosts(_url,{PageIndex:  PageIndex})
+	        }
         }
-        _self.props.fetchPosts(_url,{PageIndex: 1,PageSize:10})
+        //再次切回列表页不用拉取数据
+        !_self.props.listData  && _self.props.fetchPosts(_url,{PageIndex: 1})
     }
 
 	render(){
