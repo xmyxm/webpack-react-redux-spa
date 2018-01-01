@@ -34,15 +34,9 @@ export const rejectPosts = (path, error) => {
 
 // 页面初次渲染时获取数据
 export const fetchPosts = (path, postData) => {
+    postData.PageSize = 10
+    let url = path + '?' + paramToStr(postData)
     return (dispatch,getState) => {
-        let listState = getState().List
-        if(listState.isFetching) {
-            console.log('多次return')
-            return
-        }
-        postData.PageSize = 10
-        let url = path + '?' + paramToStr(postData)
-        console.log(2)
         dispatch(requestPosts(url,postData))
         return fetch(url,{
             method: 'POST', 

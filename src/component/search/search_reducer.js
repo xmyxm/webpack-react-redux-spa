@@ -19,7 +19,7 @@ const Search = (state = defaultlState , action = {}) => {
                 dataMore = true
             }
             if(_data.PageIndex != 1 && state.searchData && state.searchData.BlogWorkList && state.searchData.BlogWorkList.length){
-                _data.BlogWorkList = _data.BlogWorkList.concat(state.searchData.BlogWorkList)
+                _data.BlogWorkList = state.searchData.BlogWorkList.concat(_data.BlogWorkList)
             }
             return {
                 ...state,
