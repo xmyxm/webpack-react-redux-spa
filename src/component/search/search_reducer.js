@@ -1,4 +1,4 @@
-import {SEARCH_REQUEST_POSTS, SEARCH_RESOLVE_POSTS, SEARCH_REJECT_POSTS, LIST_SAVE_SCROLLTOP} from './search_action.js'
+import {SEARCH_REQUEST_POSTS, SEARCH_RESOLVE_POSTS, SEARCH_REJECT_POSTS, SEARCH_SAVE_SCROLLTOP} from './search_action.js'
 
 const defaultlState = {searchData: null, top : 0, isFetching: false, dataMore: true, param: null}
 //首次渲染时获取数据
@@ -34,7 +34,7 @@ const Search = (state = defaultlState , action = {}) => {
                 isFetching:false
             }
 
-        case LIST_SAVE_SCROLLTOP:
+        case SEARCH_SAVE_SCROLLTOP:
             state.top = action.top
             return state
 
