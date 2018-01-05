@@ -1,4 +1,4 @@
-import {paramToStr} from '../../utils/url-data.js';
+import {paramToStr} from 'utilspath/url-data.js';
 import fetch from 'isomorphic-fetch';
 
 export const HEADER_REQUEST_POSTS = 'HEADER_REQUEST_POSTS';//发送请求

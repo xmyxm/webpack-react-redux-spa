@@ -3,7 +3,7 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 import {fetchPosts, saveScrollTop} from './list_action.js';
 import {connect} from 'react-redux';
-import DateTool from 'utils/date-format.js';
+import DateTool from 'utilspath/date-format.js';
 import Eat from '../animation/eat.jsx';
 import './list.less';
 

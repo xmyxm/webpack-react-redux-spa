@@ -1,4 +1,4 @@
-import {paramToStr} from '../../utils/url-data.js';
+import {paramToStr} from 'utilspath/url-data.js';
 import fetch from 'isomorphic-fetch';
 
 export const SEARCH_REQUEST_POSTS = 'SEARCH_REQUEST_POSTS';//发送请求

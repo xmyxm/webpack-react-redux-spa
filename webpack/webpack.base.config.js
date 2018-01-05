@@ -94,9 +94,12 @@ module.exports = {
     resolve:{
         //别名设置,主要是为了配和webpack.ProvidePlugin设置全局插件;
         alias: {
-             //绝对路径;
-             action: path.resolve(__dirname,'../src/redux/action'), 
-             utils: path.resolve(__dirname,'../src/utils')
+             //绝对路径;特别注意这里定义的路径和依赖的包名不能重名
+             actionpath: path.resolve(__dirname,'../src/redux/action'), 
+             utilspath: path.resolve(__dirname,'../src/utils'),
+             componentpath: path.resolve(__dirname,'../src/component'),
+             stylepath: path.resolve(__dirname,'../src/style'),
+             reduxpath: path.resolve(__dirname,'../src/redux')
         }
     },
 	devServer: {
