@@ -20,10 +20,6 @@ export default class Search extends Component{
 		this.dataUrl = 'http://qqweb.top/API/BlogApi/Query'
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
-    	return true
-	}
-
 	componentWillUnmount() {
 		window.onscroll = null
 		var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset

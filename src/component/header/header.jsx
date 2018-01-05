@@ -14,10 +14,6 @@ class Header extends Component{
 		this.state = {showmenu:false};
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
-    	return true;
-	}
-
 	componentDidMount(){
 		//debugger
 		this.props.fetchPosts('http://qqweb.top/API/BlogApi/AdminUser');

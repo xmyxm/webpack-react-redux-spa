@@ -18,10 +18,6 @@ export default class List extends Component{
 		super(props)
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
-    	return true
-	}
-
 	componentWillUnmount() {
 		window.onscroll = null;
 		var top = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset

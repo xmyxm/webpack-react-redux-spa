@@ -15,10 +15,6 @@ class Detail extends Component{
 	constructor(props){
 		super(props);
 	}
-	
-	shouldComponentUpdate(nextProps, nextState){
-		return true
-	}
 
 	//在第一次渲染后调用，只在客户端
 	componentDidMount(){
