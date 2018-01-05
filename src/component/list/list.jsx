@@ -39,7 +39,7 @@ export default class List extends Component{
             //当一个元素的内容没有产生垂直方向的滚动条，那么它的 scrollTop 值为0。
 
             //innerHeight 浏览器窗口的视口（viewport）高度（以像素为单位），如果存在水平滚动条，则包括它。
-            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 100
+            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 200
             //scrollHeight 这个只读属性是一个元素内容高度的度量，包括由于溢出导致的视图中不可见内容。
             //没有垂直滚动条的情况下，scrollHeight值与元素视图填充所有内容所需要的最小值clientHeight相同。
             //包括元素的padding，但不包括元素的border和margin.

@@ -36,7 +36,7 @@ export default class Search extends Component{
 
 		window.onscroll = (e) => { 
             if (!_self.props.dataMore || _self.props.isFetching) return
-            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 100
+            let alltop = (document.body.scrollTop || document.documentElement.scrollTop) + window.innerHeight + 200
             if (alltop > document.body.scrollHeight) {
             	let PageIndex = _self.props.searchData && _self.props.searchData.PageIndex ? ++ _self.props.searchData.PageIndex : 1
                 _self.pullBlogData({PageIndex : PageIndex, key : this.refs.keyname.value})
