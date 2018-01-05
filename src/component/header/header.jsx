@@ -48,12 +48,10 @@ class Header extends Component{
 				<div onClick = {this.showhome.bind(this)} className = {this.state.showmenu ? "classify show" : "classify"}>
 						<div className = "userinfo">
 							<div className = "usericon">
-								{
-									this.data && <img className = "imgfile" src = {'http://qqweb.top' + this.data.AvatarUrl} />
-								}
+								<img className = "imgfile" src = {'http://qqweb.top' + headerData.AvatarUrl} />
 							</div>
 							<div className = "usercontent">
-								<p className = "name">{this.data ? this.data.NickName : "晨曦沐枫"}</p>
+								<p className = "name">{headerData.NickName ? headerData.NickName : "晨曦沐枫"}</p>
 								<p className = "detail">前端工程师</p>
 							</div>
 						</div>
