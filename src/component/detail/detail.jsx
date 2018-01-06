@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import React,{Component} from 'react';
 import {withRouter} from "react-router-dom";
