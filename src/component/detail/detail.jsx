@@ -69,22 +69,6 @@ export default withRouter(Detail)
 
 
 
-/*			 	<div className = "share-component" data-mobile-sites="weibo,qq,qzone,tencent"></div>
-			 	<div className = "comment">
-			 		<div className = "inputarea">
-			 			<input className = "username" type="text" placeholder = "昵称" />
-			 			<textarea className = "inputtext" placeholder = "内容 ~ ~ ~"></textarea>
-			 		</div>
-					<div className = "commentbtn" >评论</div>
-			 	</div>*/
-
-
-
-
-
-
-
-
 
 
 
