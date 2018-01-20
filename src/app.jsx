@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createHashHistory'
 //import createHistory from 'history/createBrowserHistory';
 import { Router, Route, Switch, Link, Redirect} from 'react-router-dom';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -28,7 +28,7 @@ const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */"com
 const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */"componentpath/search/search.jsx"));
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
-const history = createHistory();
+const history = createHistory({hashType: "noslash"});//设置省略前导斜杠
 const middleware = [thunk, routerMiddleware(history)];
 
 if (process.env.NODE_ENV !== 'production') {
