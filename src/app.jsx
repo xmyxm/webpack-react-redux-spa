@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import createHistory from 'history/createHashHistory'
 //import createHistory from 'history/createBrowserHistory';
 import { Router, Route, Switch, Link, Redirect} from 'react-router-dom';
-import { routerMiddleware } from 'react-router-redux';
 import { createStore, applyMiddleware,combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
@@ -29,7 +28,7 @@ const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */"c
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const history = createHistory({hashType: "noslash"});//设置省略前导斜杠
-const middleware = [thunk, routerMiddleware(history)];
+const middleware = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
@@ -39,11 +38,6 @@ if (process.env.NODE_ENV !== 'production') {
 const initialState = {};
 const finalCreateStore = applyMiddleware(...middleware)(createStore);
 const store = finalCreateStore(reducers, initialState);
-
-if (module.hot) {
-    const nextReducer = require('reduxpath/reducer');
-    module.hot.accept('reduxpath/reducer',() => { store.replaceReducer(nextReducer)} );
-}
 
 //启用排它性路由 Switch ，保证在 Switch 标签中只会命中一个组件
 //启用 Redirect 做到，当匹配不到 Switch 中的路由时重定向到默认页面：/m/index.html ， 处理路由 404 问题

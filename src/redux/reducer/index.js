@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux'
 
 //import fetchData from './fetch-reducer.js';
 import Detail from '../../component/detail/detail_reducer.js';
@@ -11,8 +10,7 @@ export default combineReducers({
 	Detail,//所有的 reducer 都放在这里
 	Header,
 	List,
-	Search,
-    routing: routerReducer
+	Search
 });
 
 
