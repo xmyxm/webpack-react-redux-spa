@@ -42,6 +42,11 @@ export const saveScrollTop = (height) => {
 }
 
 // 页面初次渲染时获取数据
+// 特别说明我们这边都是本地调试需求，直接调用远端的服务是跨域的，我在服务端只支持了简单跨域，所以简单跨域只能使用的 Content-Type 限定为如下3中，如果是
+// 其它的值, 浏览器会发送 option 的预检请求，而我在服务端没有去支持预检请求，所以使用其他值会导致跨域失败。
+// application/x-www-form-urlencoded
+// multipart/form-data
+// text/plain
 export const fetchPosts = (path, postData) => {
     postData.PageSize = 10
     let url = path + '?' + paramToStr(postData)

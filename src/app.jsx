@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 //域名根路径无法指向当前web站点index.html页面时启用 hash 路由
 import createHistory from 'history/createHashHistory'
 //import createHistory from 'history/createBrowserHistory';
-import { Router, Route, Switch, Link, Redirect} from 'react-router-dom';
-import { createStore, applyMiddleware,combineReducers } from 'redux';
+import { Router, Route, Switch, Redirect} from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducers from 'reduxpath/reducer';//拿到所有reducer来生成stare
