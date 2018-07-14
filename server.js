@@ -1,18 +1,16 @@
-const WebpackDevServer = require("webpack-dev-server");
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WebpackDevServer = require('webpack-dev-server');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const webpack = require("webpack");
-const open = require("open");
-const config = require("./webpack/webpack.beta.config.js");
+const webpack = require('webpack');
+const open = require('open');
+const config = require('./webpack/webpack.beta.config.js');
 const port =  config.devServer.port;
 const host = config.devServer.host || '127.0.0.1';
-const ip = '0.0.0.0';
 
 for (let key in config.entry) {
-    let ar = config.entry[key];
-    if (key != "common") {
-        ar.unshift("webpack-dev-server/client?http://"+ host +":"+ port +"/", "webpack/hot/dev-server");
-    }
+	let ar = config.entry[key];
+	if (key != 'common') {
+		ar.unshift('webpack-dev-server/client?http://'+ host +':'+ port +'/', 'webpack/hot/dev-server');
+	}
 }
 
 //开发环境热更新配置
@@ -29,14 +27,3 @@ server.listen(port, host, (err)=>{
 	}
 	open('http://' + host + ':' + port + '/index.html');
 });
-
-
-
-
-
-
-
-
-
-
-

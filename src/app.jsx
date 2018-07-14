@@ -9,7 +9,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import reducers from 'reduxpath/reducer';//拿到所有reducer来生成stare
-import baseStyle from 'stylepath/base.less';
+import 'stylepath/base.less';
 
 import Header from 'componentpath/header/header.jsx';
 import loadComponent from 'componentpath/loadComponent.js';
@@ -19,20 +19,20 @@ import loadComponent from 'componentpath/loadComponent.js';
 // require.ensure([], function() {
 //     var const = require('./component/me/me.jsx') //baidumap.js放在我们当前目录下
 // })
-const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */"componentpath/me/me.jsx"));
-const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */"componentpath/home/home.jsx"));
-const List = loadComponent(() => import(/* webpackChunkName: "app-list" */"componentpath/list/list.jsx"));
-const Detail = loadComponent(() => import(/* webpackChunkName: "app-detail" */"componentpath/detail/detail.jsx"));
-const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */"componentpath/email/email.jsx"));
-const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */"componentpath/search/search.jsx"));
+const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */'componentpath/me/me.jsx'));
+const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */'componentpath/home/home.jsx'));
+const List = loadComponent(() => import(/* webpackChunkName: "app-list" */'componentpath/list/list.jsx'));
+const Detail = loadComponent(() => import(/* webpackChunkName: "app-detail" */'componentpath/detail/detail.jsx'));
+const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */'componentpath/email/email.jsx'));
+const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */'componentpath/search/search.jsx'));
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
-const history = createHistory({hashType: "noslash"});//设置省略前导斜杠
+const history = createHistory({hashType: 'noslash'});//设置省略前导斜杠
 const middleware = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
-    middleware.push(createLogger());
-    //middleware.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+	middleware.push(createLogger());
+	//middleware.push(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 }
 //初始化默认state数据
 const initialState = {};
@@ -43,26 +43,24 @@ const store = finalCreateStore(reducers, initialState);
 //启用 Redirect 做到，当匹配不到 Switch 中的路由时重定向到默认页面：/m/index.html ， 处理路由 404 问题
 //因为react-router 是包容性路由，所以 exact 则要求路径与location.pathname必须完全匹配
 ReactDOM.render(
-  <Provider store = {store}>
-    <Router history = {history}>
-        <div className = "blogbox">
-            <Header/>
-            <Switch>
-                <Route path="/" exact component = {Home} ></Route>
-                <Route path="/index.html" exact component = {Home} ></Route>
-                <Route path="/m/index.html" exact component = {Home} ></Route>
-                <Route path="/home" component = {Home} ></Route>
-                <Route path="/list" component = {List} ></Route>
-                <Route path="/search" component = {Search}></Route>
-                <Route path="/detail/:id" component = {Detail} ></Route>
-                <Route path="/me" component = {Me} ></Route>
-                <Route path="/email" component = {Email} ></Route>
-                <Redirect to="/m/index.html" />
-            </Switch>
-        </div>
-    </Router>
-  </Provider>,
-  document.getElementById('app')
+	<Provider store = {store}>
+		<Router history = {history}>
+			<div className = "blogbox">
+				<Header/>
+				<Switch>
+					<Route path="/" exact component = {Home} ></Route>
+					<Route path="/index.html" exact component = {Home} ></Route>
+					<Route path="/m/index.html" exact component = {Home} ></Route>
+					<Route path="/home" component = {Home} ></Route>
+					<Route path="/list" component = {List} ></Route>
+					<Route path="/search" component = {Search}></Route>
+					<Route path="/detail/:id" component = {Detail} ></Route>
+					<Route path="/me" component = {Me} ></Route>
+					<Route path="/email" component = {Email} ></Route>
+					<Redirect to="/m/index.html" />
+				</Switch>
+			</div>
+		</Router>
+	</Provider>,
+	document.getElementById('app')
 )
-
-

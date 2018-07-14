@@ -16,10 +16,15 @@ module.exports = {
 		}
 	},
 	"env": {
-        "browser": true,
+		"browser": true,
+		"node": true,
 		"commonjs": true
 	},
 	"plugins": ["react"],
+	"globals": {
+		"process" : true,
+		"__dirname" : true
+	},
     "rules": {
 		"react/prop-types": "off",
 		"react/no-string-refs": "off",
@@ -134,7 +139,7 @@ module.exports = {
 		"camelcase": 2,//强制驼峰法命名
 		"comma-dangle": [2, "never"],//对象字面量项尾不能有逗号
 		"comma-spacing": 0,//逗号前后的空格
-		"comma-style": [2, "last"],//逗号风格，换行时在行首还是行尾
+		"comma-style": 0, //[2, "last"],//逗号风格，换行时在行首还是行尾
 		"complexity": [0, 11],//循环复杂度
 		"computed-property-spacing": [0, "never"],//是否允许计算后的键名什么的
 		"consistent-return": 0,//return 后面是否允许省略
