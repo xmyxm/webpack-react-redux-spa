@@ -1,11 +1,11 @@
 /* eslint-disable react/no-deprecated */
-import React, { Component } from 'react';
+import React from 'react';
 import Loading from './loading/loading.jsx';
 
 //loadComponent 就是一个异步加载组件，当组件还未加载完就先显示 loading 组件， 加载完毕显示加载完毕的组件
 
 const loadComponent = component =>
-	class GetComponent extends Component    {
+	class GetComponent extends React.Component{
 		constructor(props){
 			super(props)
 			this.state = { Component: null }
@@ -30,7 +30,8 @@ const loadComponent = component =>
 		}
 
 		render() {
-			return this.state.Component ? <Component {...this.props} /> : <Loading/>
+			const { Component } = this.state
+			return Component ? <Component {...this.props} /> : <Loading/>
 		}
 	}
 
