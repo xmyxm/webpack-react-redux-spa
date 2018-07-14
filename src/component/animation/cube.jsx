@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
+import React from 'react';
 import './cube.less';
 
-export default function Square(){
+export default function Cube(){
 		return (
 			<div className = 'Cube panelLoad'>
 			  <div className = 'cube-face cube-face-front'>Na</div>

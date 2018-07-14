@@ -4,10 +4,11 @@ import {connect} from 'react-redux';
 import {fetchPosts} from './header_action.js';
 import './header.less';
 
+@withRouter
 @connect(state => {return {
 	headerData:state.Header.headerData
 }},{fetchPosts})
-class Header extends Component{
+export default class Header extends Component{
 	constructor(props){
 		super(props);
 		this.state = {showmenu:false};
@@ -79,10 +80,6 @@ class Header extends Component{
 	    )
 	}
 } 
-
-export default withRouter(Header)
-
-
 
 
 

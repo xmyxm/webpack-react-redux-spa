@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
+import React from 'react';
 import './time.less';
 
-export default function Square(){
+export default function Time(){
 		return (
             <div className= "flipClock">
 					<div className= "flipUnitContainer">

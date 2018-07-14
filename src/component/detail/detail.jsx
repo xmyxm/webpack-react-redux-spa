@@ -1,16 +1,17 @@
-import {connect} from 'react-redux';
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
 import {fetchPosts} from './detail_action.js';
 import DateTool from 'utilspath/date-format.js';
 import Cube from '../animation/cube.jsx';
 import './detail.less';
 
+@withRouter
 @connect(state => {return {
 	detailData:state.Detail.detailData
 	,isFetching: state.Detail.isFetching
 }},{fetchPosts})
-class Detail extends Component{
+export default class Detail extends Component{
 	constructor(props){
 		super(props);
 	}
@@ -61,7 +62,7 @@ class Detail extends Component{
 	}
 } 
 
-export default withRouter(Detail)
+//export default withRouter(Detail)
 
 
 
