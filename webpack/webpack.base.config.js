@@ -25,6 +25,7 @@ module.exports = {
 				loader: 'babel-loader?cacheDirectory',//babel-loader缓存机制加参数 cacheDirectory,webpack构建将尝试从缓存中读取，以避免在每次运行时，需要运行 Babel 重新编译过程可能带来的高昂的开销
 				exclude: /node_modules/,
 				query: {
+					//先执行完所有Plugin，再执行Preset。多个Plugin，按照声明次序顺序执行。多个Preset，按照声明次序逆序执行。
 					presets: ['react', 'stage-0', 'es2015'],
 					//est-spread 解构代码转换, decorators-legacy装饰器语法转换,stage-0 包含 transform-class-properties
 					plugins: ['transform-runtime', 'transform-object-rest-spread', 'transform-decorators-legacy']
