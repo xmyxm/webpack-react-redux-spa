@@ -2,7 +2,8 @@
 	"extends": "eslint:recommended",
 	"env": {
         "browser": true,
-        "node": true
+		"node": true,
+		"commonjs": true
     },
     "rules": {
         "no-alert": 0,//禁止使用alert confirm prompt
@@ -182,7 +183,6 @@
     }
 }
 
-//
 // Sublime text 3 中 使用 eslint 步骤如下：
 //安装 SublimeLinter 和 SublimeLinter-contrib-eslint
 //SublimeLinter 是一个代码检查框架插件，功能非常强大，支持各种语言的检查。但是它本身并没有代码检查的功能，需要借助 ESLint 这样的特定语言检查支持。我们只需要使用对应的 SublimeLinter-contrib-eslint 插件即可
