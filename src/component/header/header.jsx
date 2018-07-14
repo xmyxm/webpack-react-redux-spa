@@ -26,12 +26,13 @@ export default class Header extends Component{
 	}
 
 	gotoSearch(){
-
-		if(this.props.history.location.pathname != '/search'){
-			this.props.history.push('/search');
-		}
 		if(this.state.showmenu){
 			this.showhome();
+		}
+		if(this.props.history.location.pathname != '/search'){
+			setTimeout(() => {
+				this.props.history.push('/search')
+			},100);
 		}
 	}
 
