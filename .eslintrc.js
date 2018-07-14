@@ -1,11 +1,28 @@
-{
-	"extends": "eslint:recommended",
+// ESLint 支持几种格式的配置文件，如果同一个目录下有多个配置文件，ESLint 只会使用一个。优先级顺序如下：
+// JavaScript - 使用 .eslintrc.js 然后输出一个配置对象。
+// YAML - 使用 .eslintrc.yaml 或 .eslintrc.yml 去定义配置的结构。
+// JSON -使用 .eslintrc.json 去定义配置的结构，ESLint 的 JSON 文件允许 JavaScript 风格的注释。
+// Deprecated -使用 .eslintrc，可以使 JSON 也可以是 YAML。
+// package.json - 在 package.json 里创建一个 eslintConfig属性，在那里定义你的配置。
+
+module.exports = {
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parser": "babel-eslint",
+	"parserOptions": {
+		//设置"script"（默认）或"module"如果你的代码是在ECMAScript中的模块。
+		"sourceType": 'module',
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
 	"env": {
         "browser": true,
-		"node": true,
 		"commonjs": true
-    },
+	},
+	"plugins": ["react"],
     "rules": {
+		"react/prop-types": "off",
+		"react/no-string-refs": "off",
         "no-alert": 0,//禁止使用alert confirm prompt
 		"no-array-constructor": 2,//禁止使用数组构造器
 		"no-bitwise": 0,//禁止使用按位运算符
@@ -13,7 +30,7 @@
 		"no-catch-shadow": 2,//禁止catch子句参数与外部作用域变量同名
 		"no-class-assign": 2,//禁止给类赋值
 		"no-cond-assign": 2,//禁止在条件表达式中使用赋值语句
-		"no-console": 2,//禁止使用console
+		"no-console": "off",//禁止使用console
 		"no-const-assign": 2,//禁止修改const声明的变量
 		"no-constant-condition": 2,//禁止在条件中使用常量表达式 if(true) if(1)
 		"no-continue": 0,//禁止使用continue
@@ -27,7 +44,7 @@
 		"no-else-return": 2,//如果if语句里面有return,后面不能跟else语句
 		"no-empty": 2,//块语句中的内容不能为空
 		"no-empty-character-class": 2,//正则表达式中的[]内容不能为空
-		"no-empty-label": 2,//禁止使用空label
+		//"no-empty-label": 2,//禁止使用空label
 		"no-eq-null": 2,//禁止对null使用==或!=运算符
 		"no-eval": 1,//禁止使用eval
 		"no-ex-assign": 2,//禁止给catch语句中的异常参数赋值
@@ -69,7 +86,7 @@
 		"no-obj-calls": 2,//不能调用内置的全局对象，比如Math() JSON()
 		"no-octal": 2,//禁止使用八进制数字
 		"no-octal-escape": 2,//禁止使用八进制转义序列
-		"no-param-reassign": 2,//禁止给参数重新赋值
+		"no-param-reassign": "off",//禁止给参数重新赋值
 		"no-path-concat": 0,//node中不能使用__dirname或__filename做路径拼接
 		"no-plusplus": 0,//禁止使用++，--
 		"no-process-env": 0,//禁止使用process.env
@@ -95,10 +112,10 @@
 		"no-undef-init": 2,//变量初始化时不能直接给它赋值为undefined
 		"no-undefined": 2,//不能使用undefined
 		"no-unexpected-multiline": 2,//避免多行表达式
-		"no-underscore-dangle": 1,//标识符不能以_开头或结尾
+		"no-underscore-dangle": "off",//标识符不能以_开头或结尾
 		"no-unneeded-ternary": 2,//禁止不必要的嵌套 var isYes = answer === 1 ? true : false;
 		"no-unreachable": 2,//不能有无法执行的代码
-		"no-unused-expressions": 2,//禁止无用的表达式
+		"no-unused-expressions": "off", //2,//禁止无用的表达式
 		"no-unused-vars": [2, {"vars": "all", "args": "after-used"}],//不能有声明后未被使用的变量或参数
 		"no-use-before-define": 2,//未定义前不能使用
 		"no-useless-call": 2,//禁止不必要的call和apply
@@ -121,7 +138,7 @@
 		"complexity": [0, 11],//循环复杂度
 		"computed-property-spacing": [0, "never"],//是否允许计算后的键名什么的
 		"consistent-return": 0,//return 后面是否允许省略
-		"consistent-this": [2, "that"],//this别名
+		"consistent-this": [2, "that", "self", "_self"],//this别名
 		"constructor-super": 0,//非派生类不能调用super，派生类必须调用super
 		"curly": [2, "all"],//必须使用 if(){} 中的{}
 		"default-case": 2,//switch语句最后必须有default
@@ -135,7 +152,7 @@
 		"guard-for-in": 0,//for in循环要用if语句过滤
 		"handle-callback-err": 0,//nodejs 处理错误
 		"id-length": 0,//变量名长度
-		"indent": [2, 2],//缩进风格
+		"indent": ["error", "tab"], //两个空格缩进 //[2, 2],//缩进风格
 		"init-declarations": 0,//声明时必须赋初值
 		"key-spacing": [0, { "beforeColon": false, "afterColon": true }],//对象字面量中冒号的前后空格
 		"lines-around-comment": 0,//行前/行后备注
@@ -146,10 +163,10 @@
 		"max-statements": [0, 10],//函数内最多有几个声明
 		"new-cap": 2,//函数名首行大写必须使用new方式调用，首行小写必须用不带new方式调用
 		"new-parens": 2,//new时必须加小括号
-		"newline-after-var": 2,//变量声明后是否需要空一行
+		"newline-after-var": "off",//变量声明后是否需要空一行
 		"object-curly-spacing": [0, "never"],//大括号内是否允许不必要的空格
 		"object-shorthand": 0,//强制对象字面量缩写语法
-		"one-var": 1,//连续声明
+		"one-var": "off",//连续声明
 		"operator-assignment": [0, "always"],//赋值运算符 += -=什么的
 		"operator-linebreak": [2, "after"],//换行时运算符在行尾还是行首
 		"padded-blocks": 0,//块语句内行首行尾是否要空行
@@ -157,11 +174,11 @@
 		"prefer-spread": 0,//首选展开运算
 		"prefer-reflect": 0,//首选Reflect的方法
 		"quotes": [1, "single"],//引号类型 `` "" ''
-		"quote-props":[2, "always"],//对象字面量中的属性名是否强制双引号
+		"quote-props": "off", //不强制属性名双引号  //[2, "always"],//对象字面量中的属性名是否强制双引号
 		"radix": 2,//parseInt必须指定第二个参数
 		"id-match": 0,//命名检测
 		"require-yield": 0,//生成器函数必须有yield
-		"semi": [2, "always"],//语句强制分号结尾
+		"semi": "off",//不校验分号结尾 //[2, "always"],语句强制分号结尾
 		"semi-spacing": [0, {"before": false, "after": true}],//分号前后空格
 		"sort-vars": 0,//变量声明时排序
 		"space-after-keywords": [0, "always"],//关键字后面是否要空一格
@@ -169,7 +186,7 @@
 		"space-before-function-paren": [0, "always"],//函数定义时括号前面要不要有空格
 		"space-in-parens": [0, "never"],//小括号里面要不要有空格
 		"space-infix-ops": 0,//中缀操作符周围要不要有空格
-		"space-return-throw-case": 2,//return throw case后面要不要加空格
+		//"space-return-throw-case": 2,//return throw case后面要不要加空格
 		"space-unary-ops": [0, { "words": true, "nonwords": false }],//一元运算符的前/后要不要加空格
 		"spaced-comment": 0,//注释风格要不要有空格什么的
 		"strict": 2,//使用严格模式

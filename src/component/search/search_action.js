@@ -8,37 +8,37 @@ export const SEARCH_SAVE_SCROLLTOP = 'SEARCH_SAVE_SCROLLTOP';//记录滚动位�
 
 //开始获取数据
 export const requestPosts = (path,param) => {
-  return {
-    type: SEARCH_REQUEST_POSTS,
-    path,
-    param
-  }
+	return {
+		type: SEARCH_REQUEST_POSTS,
+		path,
+		param
+	}
 }
 
 //获取数据成功
 export const resolvePosts = (path, json) => {
-  return {
-        type: SEARCH_RESOLVE_POSTS,
-        path ,
-        json 
-    }
+	return {
+		type: SEARCH_RESOLVE_POSTS,
+		path ,
+		json
+	}
 }
 
 //获取数据失败
 export const rejectPosts = (path, error) => {
-  return {
-        type: SEARCH_REJECT_POSTS,
-        path ,
-        error
-    }
+	return {
+		type: SEARCH_REJECT_POSTS,
+		path ,
+		error
+	}
 }
 
 //记录滚动位置
 export const saveScrollTop = (height) => {
-  return {
-        type: SEARCH_SAVE_SCROLLTOP,
-        top : height
-    }
+	return {
+		type: SEARCH_SAVE_SCROLLTOP,
+		top : height
+	}
 }
 
 // 页面初次渲染时获取数据
@@ -48,39 +48,24 @@ export const saveScrollTop = (height) => {
 // multipart/form-data
 // text/plain
 export const fetchPosts = (path, postData) => {
-    postData.PageSize = 10
-    let url = path + '?' + paramToStr(postData)
-    return (dispatch, getState) => {
-        dispatch(requestPosts(url,postData))
-        return fetch(url,{
-            method: 'POST', 
-            mode: 'cors',
-            "Content-Type": 'text/plain',//"application/json",
-        })
-        .then(response => {
-            if (response.ok) {
-                response.json().then(
-                    json => dispatch(resolvePosts(path, json))
-                )
-            } else {
-                console.log("redux action fetch 拉取数据失败", response.status);
-            }
-        })
-        .catch(error => dispatch(rejectPosts(path,error)))
-    }
+	postData.PageSize = 10
+	let url = path + '?' + paramToStr(postData)
+	return (dispatch) => {
+		dispatch(requestPosts(url,postData))
+		return fetch(url,{
+			method: 'POST',
+			mode: 'cors',
+			'Content-Type': 'text/plain'//"application/json",
+		})
+			.then(response => {
+				if (response.ok) {
+					response.json().then(
+						json => dispatch(resolvePosts(path, json))
+					)
+				} else {
+					console.log('redux action fetch 拉取数据失败', response.status);
+				}
+			})
+			.catch(error => dispatch(rejectPosts(path,error)))
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

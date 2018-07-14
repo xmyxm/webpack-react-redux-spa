@@ -8,34 +8,6 @@ export default class Loading extends Component{
 				<div className = "bg" >
 					<span className = "square" ></span>
 				</div>
-			</div>
-	    )
+			</div>)
 	}
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

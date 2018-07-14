@@ -23,9 +23,6 @@ export default class Home extends Component{
 				<p className = "classes">React生态圈</p>
 				<p className = "classes">ES6-7相关</p>
 				<div className = "gobtn">阅览</div>
-			</Link>
-	    )
+			</Link>)
 	}
-} 
-
-
+}
