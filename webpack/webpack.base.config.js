@@ -25,8 +25,9 @@ module.exports = {
 				loader: 'babel-loader?cacheDirectory',//babel-loader缓存机制加参数 cacheDirectory,webpack构建将尝试从缓存中读取，以避免在每次运行时，需要运行 Babel 重新编译过程可能带来的高昂的开销
 				exclude: /node_modules/,
 				query: {
-					presets: ['react', 'stage-0', 'es2015', 'stage-3'],
-					plugins: ['transform-object-rest-spread','transform-decorators-legacy','transform-class-properties']
+					presets: ['react', 'stage-0', 'es2015'],
+					//est-spread 解构代码转换, decorators-legacy装饰器语法转换,stage-0 包含 transform-class-properties
+					plugins: ['transform-runtime', 'transform-object-rest-spread', 'transform-decorators-legacy']
 				}
 			},
 			{
@@ -103,6 +104,9 @@ module.exports = {
 		}
 	},
 	devServer: {
+		headers: {
+			'Access-Control-Allow-Origin': '*' //支持服务跨域
+		},
 		contentBase: packageFilePath,
 		watchContentBase:true,//告诉服务器监视那些通过 devServer.contentBase 选项提供的文件。文件改动将触发整个页面重新加载。默认被禁用。
 		compress: true,//一切服务都启用gzip 压缩：
@@ -140,3 +144,6 @@ module.exports = {
 //     }
 // }
 //CSS modules 的技术就意在把JS的模块化思想带入CSS中来,这样做只对当前组件有效，不必担心在不同的模块中使用相同的类名造成冲突
+
+//babel-polyfill 是对浏览器缺失API的支持。比如浏览器可能没有Array.from() 方法。
+//babel-runtime 是为了减少重复代码而生的。 babel生成的代码，可能会用到一些_extend()， classCallCheck() 之类的工具函数，默认情况下，这些工具函数的代码会包含在编译后的文件中。如果存在多个文件，那每个文件都有可能含有一份重复的代码。
