@@ -1,8 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');//webpack插件，用于清除目录文件
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');//抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');//抽离css样式,防止将样式打包在js中引起页面样式加载错乱的现象
 const webpack = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const packageFilePath = path.join(__dirname, '../dist');
 
 module.exports = {
@@ -31,20 +33,69 @@ module.exports = {
 					plugins: ['transform-runtime', 'transform-object-rest-spread', 'transform-decorators-legacy']
 				}
 			},
-			{
-				test: /\.less$/,
-				//设置 options: { minimize: true }  会压缩样式,style-loader加载器就是将CSS以内联方式插入到页面文档
-				use: ExtractTextPlugin.extract({
-					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
-					,fallback: 'style-loader'})
-				//['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
-			},
+			// {
+			// 	test: /\.less$/,
+			// 	//设置 options: { minimize: true }  会压缩样式,style-loader加载器就是将CSS以内联方式插入到页面文档
+			// 	use: ExtractTextPlugin.extract({
+			// 		use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+			// 		,fallback: 'style-loader'})
+			// 	//['style-loader',{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','less-loader']
+			// },
+			// {
+			// 	test: /\.scss$/,
+			// 	use: ExtractTextPlugin.extract({
+			// 		use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+			// 		,fallback: 'style-loader'})
+			// 	//['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+			// },
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract({
-					use:[{ loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
-					,fallback: 'style-loader'})
-				//['style-loader', { loader: 'css-loader', options: { minimize: true } },'postcss-loader','sass-loader']
+				use: [
+					{
+						loader: process.env.NODE_ENV == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+						options: {
+							// 您可以在这里指定公共路径,默认情况下，它在webpackOptions.output中使用publicPath
+						}
+					},
+					{
+						loader: 'css-loader',
+						options: { minimize: true }
+					},
+					'postcss-loader',
+					'sass-loader'
+				]
+			},
+			{
+				test: /\.less$/,
+				use: [
+					{
+						loader: process.env.NODE_ENV == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+						options: {
+							// 您可以在这里指定公共路径,默认情况下，它在webpackOptions.output中使用publicPath
+						}
+					},
+					{
+						loader: 'css-loader',
+						options: { minimize: true }
+					},
+					'postcss-loader',
+					'less-loader'
+				]
+			},
+			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: process.env.NODE_ENV == 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
+						options: {
+							// 您可以在这里指定公共路径,默认情况下，它在webpackOptions.output中使用publicPath
+						}
+					},
+					{
+						loader: 'css-loader',
+						options: { minimize: true }
+					}
+				]
 			},
 			{
 				test: /\.(png|jpg|jpeg|gif)$/,
@@ -70,17 +121,36 @@ module.exports = {
 			}
 		]
 	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					name: 'common',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
+		},
+		runtimeChunk: {
+			name: 'manifest'
+		}
+	},
 	plugins:[
 		new webpack.BannerPlugin('晨曦沐枫作品，欢迎学习交流'),//打包后代码版权申明插件
 		new CleanPlugin(['dist', 'build']),//每次打包清理上次的打包文件
-		new webpack.optimize.CommonsChunkPlugin({
-			// manifest文件用来引导所有模块的交互。manifest文件包含了加载和处理模块的逻辑。
-			// 当webpack编译器处理和映射应用代码时，它把模块的详细的信息都记录到了manifest文件中。当模块被打包并运输到浏览器上时，
-			// runtime就会根据manifest文件来处理和加载模块。利用manifest就知道从哪里去获取模块代码。
-			names: ['common','manifest'],
-			//filename: "js/[name]-[chunkhash:8].js",
-			minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	// manifest文件用来引导所有模块的交互。manifest文件包含了加载和处理模块的逻辑。
+		// 	// 当webpack编译器处理和映射应用代码时，它把模块的详细的信息都记录到了manifest文件中。当模块被打包并运输到浏览器上时，
+		// 	// runtime就会根据manifest文件来处理和加载模块。利用manifest就知道从哪里去获取模块代码。
+		// 	names: ['common','manifest'],
+		// 	//filename: "js/[name]-[chunkhash:8].js",
+		// 	minChunks: Infinity//当项目中引用次数超过2次的包自动打入commons.js中,可自行根据需要进行调整优化
+		// }),
+		// css文件抽离设置
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css'
 		}),
+		new DashboardPlugin(),
 		new HtmlWebpackPlugin({
 			template:'./src/html/index.html'
 			,filename:'index.html'//可以使用hash命名
