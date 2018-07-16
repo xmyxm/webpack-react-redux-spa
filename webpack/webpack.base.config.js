@@ -112,7 +112,7 @@ module.exports = {
 				commons: {
 					name: 'common',
 					chunks: 'initial',
-					minChunks: 2
+					minChunks: 1
 				}
 			}
 		},
