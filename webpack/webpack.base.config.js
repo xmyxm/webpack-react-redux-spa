@@ -112,8 +112,13 @@ module.exports = {
 				commons: {
 					name: 'common',
 					chunks: 'initial',
-					minChunks: 1
-				}
+					minChunks: 2
+				},
+				vendors: {
+		            test: /[\\/]node_modules[\\/]/,
+		            name: "vendors",
+		            chunks: "all"
+		        }
 			}
 		},
 		runtimeChunk: {
@@ -135,7 +140,7 @@ module.exports = {
 			,filename:'index.html'//可以使用hash命名
 			,title:'前端栈'
 			,inject:'body'//脚本包含到body 也可以写到head里面
-			,chunks:['index','common','manifest']//指定当前模板需要打入哪些js模块
+			,chunks:['manifest', 'vendors', 'common', 'index']//指定当前模板需要打入哪些js模块
 			,minify:{//启用代码代码压缩
 				removeComments:true,//移除注释
 				collapseWhitespace:true//移除空格
