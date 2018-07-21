@@ -7,7 +7,7 @@ react 16.x
 
 react-router 4.x
 
-redux 3.x
+redux 4.x
 
 react-redux 5.x
 
@@ -23,6 +23,9 @@ react-redux 5.x
 
 3.项目功能简单完整，是一个简单的脚手架，可以改写为自己的项目，非常适合新手学习，可作为react入门demo
 
+4.项目使用了ESlint及其钩子，方便代码提交管理
+
+5.采用了webpack4的最新打包方案
 
 ### 使用步骤：
 
