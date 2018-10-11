@@ -16,7 +16,7 @@ module.exports = {
 		path: packageFilePath
 		//,filename:'js/[name]-[chunkhash].js'//dev 环境不能使用这个配置，因为您不应该使用纯或散列进行开发。这将导致许多其他问题，比如内存泄漏，因为dev服务器不知道什么时候清理旧文件。
 		,filename:'js/[name].js'
-		,chunkFilename: 'js/[name]-[id].js'
+		,chunkFilename: 'js/[name].js'
 		,publicPath:'/'//'http://qqweb.top/m/' //配置文件公共路径，上线的时候直接替换为线上域名
 		,crossOriginLoading: 'anonymous' //script 标签加上跨域错误捕获权限
 	},

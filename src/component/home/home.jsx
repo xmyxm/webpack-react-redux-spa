@@ -1,11 +1,16 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import componentList from 'componentpath/init/index.js';
 import imglink from '../../icons/shanghai.jpg'
 import './home.less';
 
 export default class Home extends Component{
 	constructor(props){
 		super(props);
+	}
+
+	componentDidMount(){
+		setTimeout(function(){componentList.List.init()}, 0)
 	}
 
 	render(){

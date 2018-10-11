@@ -12,19 +12,20 @@ import reducers from 'reduxpath/reducer';//拿到所有reducer来生成stare
 import 'stylepath/base.less';
 
 import Header from 'componentpath/header/header.jsx';
-import loadComponent from 'componentpath/loadComponent.js';
+// import loadComponent from 'componentpath/loadComponent.js';
+import componentList from 'componentpath/init/index.js';
 
 //代码分割方案
 //我抛弃了 webpack 2.x 的ensure方案 采用了webpack3.x 的 import方案，其实ensure 和 import 就是告诉 webpack 目标文件独立打包
 // require.ensure([], function() {
 //     var const = require('./component/me/me.jsx') //baidumap.js放在我们当前目录下
 // })
-const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */'componentpath/me/me.jsx'));
-const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */'componentpath/home/home.jsx'));
-const List = loadComponent(() => import(/* webpackChunkName: "app-list" */'componentpath/list/list.jsx'));
-const Detail = loadComponent(() => import(/* webpackChunkName: "app-detail" */'componentpath/detail/detail.jsx'));
-const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */'componentpath/email/email.jsx'));
-const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */'componentpath/search/search.jsx'));
+// const Me = loadComponent(() => import(/* webpackChunkName: "app-me" */'componentpath/me/me.jsx'));
+// const Home = loadComponent(() => import(/* webpackChunkName: "app-home" */'componentpath/home/home.jsx'));
+// const List = loadComponent(() => import(/* webpackChunkName: "app-list" */'componentpath/list/list.jsx'));
+// const Detail = loadComponent(() => import(/* webpackChunkName: "app-detail" */'componentpath/detail/detail.jsx'));
+// const Email = loadComponent(() => import(/* webpackChunkName: "app-email" */'componentpath/email/email.jsx'));
+// const Search = loadComponent(() => import(/* webpackChunkName: "app-search" */'componentpath/search/search.jsx'));
 
 //创建一个 Redux store 来以存放应用中所有的 state，应用中应有且仅有一个 store。
 const history = createHistory({hashType: 'noslash'});//设置省略前导斜杠
@@ -48,15 +49,15 @@ ReactDOM.render(
 			<div className = "blogbox">
 				<Header/>
 				<Switch>
-					<Route path="/" exact component = {Home} ></Route>
-					<Route path="/index.html" exact component = {Home} ></Route>
-					<Route path="/m/index.html" exact component = {Home} ></Route>
-					<Route path="/home" component = {Home} ></Route>
-					<Route path="/list" component = {List} ></Route>
-					<Route path="/search" component = {Search}></Route>
-					<Route path="/detail/:id" component = {Detail} ></Route>
-					<Route path="/me" component = {Me} ></Route>
-					<Route path="/email" component = {Email} ></Route>
+					<Route path="/" exact component = {componentList.Home.component} ></Route>
+					<Route path="/index.html" exact component = {componentList.Home.component} ></Route>
+					<Route path="/m/index.html" exact component = {componentList.Home.component} ></Route>
+					<Route path="/home" component = {componentList.Home.component} ></Route>
+					<Route path="/list" component = {componentList.List.component} ></Route>
+					<Route path="/search" component = {componentList.Search.component}></Route>
+					<Route path="/detail/:id" component = {componentList.Detail.component} ></Route>
+					<Route path="/me" component = {componentList.Me.component} ></Route>
+					<Route path="/email" component = {componentList.Email.component} ></Route>
 					<Redirect to="/m/index.html" />
 				</Switch>
 			</div>

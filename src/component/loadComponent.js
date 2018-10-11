@@ -4,7 +4,7 @@ import Loading from './loading/loading.jsx';
 
 //loadComponent 就是一个异步加载组件，当组件还未加载完就先显示 loading 组件， 加载完毕显示加载完毕的组件
 
-const loadComponent = component =>
+const loadComponent = (component, callback) =>
 	class GetComponent extends React.Component{
 		constructor(props){
 			super(props)
@@ -15,11 +15,14 @@ const loadComponent = component =>
 			if(this.hasLoadedComponent()){
 				return
 			}
+			callback(1)
 			component().then(module => module.default)
 				.then((cop) => {
+					callback(2)
 					this.setState({ Component : cop});
 				})
 				.catch((err) => {
+					callback(0)
 					console.error('Cannot load component in <GetComponent />');
 					throw err;
 				})
